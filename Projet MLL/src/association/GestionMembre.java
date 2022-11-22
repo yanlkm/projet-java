@@ -68,7 +68,7 @@ public class GestionMembre implements InterGestionMembres {
 
   public boolean designerPresident(InterMembre membre) {
     // TODO Auto-generated method stub
-    if (this.membres.contains(membre)) {
+    if (this.membres.contains(membre))  {
      
     
     
