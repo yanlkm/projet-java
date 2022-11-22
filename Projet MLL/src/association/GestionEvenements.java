@@ -73,12 +73,14 @@ public class GestionEvenements implements InterGestionEvenements  {
     Evenement e = new Evenement();
     
     try {
-      LocalDateTime date = LocalDateTime.of(annee, mois, jour, heure, minutes, 0, 0);
+      LocalDateTime d = LocalDateTime.of(annee, mois, jour, heure, minutes, 0, 0);
     } catch (OutOfMemoryError e1) {
       throw new IOError(e1);
     }
     
-    
+    if(listeEvenements.(d)) {
+      
+    }
     return e;
   }
 

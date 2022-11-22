@@ -1,3 +1,8 @@
 ﻿
 Projet MLL/.settings
 Projet MLL/.classpath
+/.metadata/
+Projet MLL/.metadata
+*.checkstyle
+*.project
+Projet MLL/.project
