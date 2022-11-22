@@ -8,6 +8,7 @@ import java.util.Set;
  * @author Eric Cariou
  */
 public interface InterGestionMembres {
+  
   /**
    * Ajoute un membre dans l'association. Ne fait rien si le membre était déjà
    * présent dans l'association.
