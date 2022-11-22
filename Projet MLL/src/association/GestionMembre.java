@@ -13,7 +13,8 @@ import java.util.Set;
  */
 public class GestionMembre implements InterGestionMembres {
 
-  public Set<InterMembre> membres;
+  private Set<InterMembre> membres;
+  private InterMembre president;
  
   /** 
    * commentaire javadoc a venir.
@@ -25,6 +26,7 @@ public class GestionMembre implements InterGestionMembres {
 
    
   }
+
   /** 
    * commentaire javadoc a venir.
    */
@@ -39,7 +41,15 @@ public class GestionMembre implements InterGestionMembres {
     return false;
   }
 
-  /** 
+  public InterMembre getPresident() {
+	return president;
+}
+
+public void setPresident(InterMembre president) {
+	this.president = president;
+}
+
+/** 
    * commentaire javadoc a venir.
    */
 
@@ -60,7 +70,8 @@ public class GestionMembre implements InterGestionMembres {
     // TODO Auto-generated method stub
     if (this.membres.contains(membre)) {
      
-    return true;
+    
+    
     }
     return false;
   }
