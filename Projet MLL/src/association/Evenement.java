@@ -31,7 +31,7 @@ public class Evenement implements java.io.Serializable {
   
   
 
-/**
+  /**
  * Crée un evenement avec toutes ses informations.
  *
  * @param nom le nom de l'evenement
@@ -42,16 +42,16 @@ public class Evenement implements java.io.Serializable {
  * @param participants un participants de l'evenement
  */
   
-public Evenement(String nom, String lieu, LocalDateTime date, int duree, int nbParticipantsMax,
-		Set<InterMembre> participants) {
-	super();
-	this.nom = nom;
-	this.lieu = lieu;
-	this.date = date;
-	this.duree = duree;
-	this.nbParticipantsMax = nbParticipantsMax;
-	this.participants = participants;
-}
+  public Evenement(String nom, String lieu, LocalDateTime date, int duree, int nbParticipantsMax,
+      Set<InterMembre> participants) {
+    super();
+    this.nom = nom;
+    this.lieu = lieu;
+    this.date = date;
+    this.duree = duree;
+    this.nbParticipantsMax = nbParticipantsMax;
+    this.participants = participants;
+  }
 
   /**
  * Renvoie le nom de l'evenement.
@@ -173,57 +173,63 @@ public int hashCode() {
 
   @Override
 public boolean equals(Object obj) {
-	if (this == obj)
-		return true;
-	if (obj == null)
-		return false;
-	if (getClass() != obj.getClass())
-		return false;
-	Evenement other = (Evenement) obj;
-	return Objects.equals(date, other.date) && duree == other.duree && Objects.equals(lieu, other.lieu)
-			&& nbParticipantsMax == other.nbParticipantsMax && Objects.equals(nom, other.nom)
-			&& Objects.equals(participants, other.participants);
-}
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    Evenement other = (Evenement) obj;
+    return Objects.equals(date, other.date) && duree == other.duree 
+        && Objects.equals(lieu, other.lieu)
+        && nbParticipantsMax == other.nbParticipantsMax && Objects.equals(nom, other.nom)
+        && Objects.equals(participants, other.participants);
+  }
 
 
 
 
-
-
-@Override
-/**
+  /**
  * renvoie les elements de l'evenement.
+ * 
+ *
  * @return une chaine de caractère contenant toutes les données d'un evenement.
  */
-public String toString() {
-	return "Evenement [nom=" + nom + ", lieu=" + lieu + ", date=" + date + ", duree=" + duree + ", nbParticipantsMax="
-			+ nbParticipantsMax + ", participants=" + participants + "]";
-}
+
+  @Override
+
+  public String toString() {
+    return "Evenement [nom=" + nom + ", lieu=" + lieu + ", date=" + date 
+        + ", duree=" + duree + ", nbParticipantsMax="
+        + nbParticipantsMax + ", participants=" + participants + "]";
+  }
 
 
 
 
 
-// A implémenter : retourne vrai si deux événements ne se chevauchent pas
+  // A implémenter : retourne vrai si deux événements ne se chevauchent pas
   // dans le même lieu en même temps
   public boolean pasDeChevauchementLieu(Evenement evt) {
-	if((this.lieu!=evt.lieu) && (this.date!=evt.date)) {		
-		return true;
-	}else { 
-		return false;
-		
-	}
+    if ((this.lieu != evt.lieu) && (this.date != evt.date)) {
+      return true;
+    } else { 
+      return false;
+    }
 
-}
+  }
   // A implémenter : retourne vrai si deux événements ne se chevauchent pas
   // dans le temps (indépendamment du lieu)
+  
   public boolean pasDeChevauchementTemps(Evenement evt) {
-	 if((this.duree!=evt.duree)) {
-		 return true;
-	 }
-	 else {
-		 return false;
-	 }
+    if ((this.duree != evt.duree)) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   // A compléter :

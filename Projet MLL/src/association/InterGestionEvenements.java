@@ -11,6 +11,8 @@ import java.util.List;
  */
 public interface InterGestionEvenements { 
 
+  int nbappelmethode = 0;
+
   /**
    * Crée un nouvel événement. Plusieurs vérifications sont effectuées : que les
    * dates et heures sont cohérentes et qu'il n'y a pas un chevauchement sur la
