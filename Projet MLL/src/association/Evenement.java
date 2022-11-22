@@ -10,6 +10,10 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+ * Class Evenement qui permet une gestion crud pour des evenements.
+*/
+
 public class Evenement implements java.io.Serializable {
   
   private String nom;
@@ -49,117 +53,125 @@ public Evenement(String nom, String lieu, LocalDateTime date, int duree, int nbP
 	this.participants = participants;
 }
 
-/**
+  /**
  * Renvoie le nom de l'evenement.
  *
  * @return le nom de l'evenement.
  */
 
-public String getNom() {
-	return nom;
-}
+  public String getNom() {
+    return nom;
+  }
 
-/**
+  /**
  * modifie le nom de l'evenement.
  *
  * @param nom le nouveau nom.
  */
-public void setNom(String nom) {
-	this.nom = nom;
-}
+  public void setNom(String nom) {
+    this.nom = nom;
+  }
 
-/**
+  /**
  * Renvoie le lieu de l'evenement.
  *
  * @return le lieu de l'evenement.
  */
-public String getLieu() {
-	return lieu;
-}
-/**
+  public String getLieu() {
+    return lieu;
+  }
+  /**
  * modifie le lieu de l'evenement.
  *
  * @param lieu le nouveau lieu.
  */
 
-public void setLieu(String lieu) {
-	this.lieu = lieu;
-}
-/**
+  public void setLieu(String lieu) {
+    this.lieu = lieu;
+  }
+  /**
  * Renvoie la date de l'evenement.
  *
  * @return la date de l'evenement.
  */
-public LocalDateTime getDate() {
-	return date;
-}
-/**
+  
+  public LocalDateTime getDate() {
+    return date;
+  }
+  /**
  * modifie la date de l'evenement.
  *
  * @param date la nouvelle date.
  */
-public void setDate(LocalDateTime date) {
-	this.date = date;
-}
-/**
+  
+  public void setDate(LocalDateTime date) {
+    this.date = date;
+  }
+  /**
  * Renvoie la duree de l'evenement.
  *
  * @return la duree de l'evenement.
  */
-public int getDuree() {
-	return duree;
-}
-/**
+  
+  public int getDuree() {
+    return duree;
+  }
+  /**
  * modifie la duree de l'evenement.
  *
  * @param duree la nouvelle duree.
  */
-public void setDuree(int duree) {
-	this.duree = duree;
-}
-/**
+  
+  public void setDuree(int duree) {
+    this.duree = duree;
+  }
+  /**
  * Renvoie le nombre de participants maximum de l'evenement.
  *
  * @return nbParticipantsMax de l'evenement.
  */
-public int getNbParticipantsMax() {
-	return nbParticipantsMax;
-}
-/**
+  
+  public int getNbParticipantsMax() {
+    return nbParticipantsMax;
+  }
+  /**
  * modifie le nombre de particpant maximum de l'evenement.
  *
  * @param nbParticipantsMax le nouveau NbParticipantsMax.
  */
-public void setNbParticipantsMax(int nbParticipantsMax) {
-	this.nbParticipantsMax = nbParticipantsMax;
-}
-/**
+  
+  public void setNbParticipantsMax(int nbParticipantsMax) {
+    this.nbParticipantsMax = nbParticipantsMax;
+  }
+  /**
  * Renvoie un participant de l'evenement.
  *
  * @return participants de l'evenement.
  */
-public Set<InterMembre> getParticipants() {
-	return participants;
-}
-/**
+  
+  public Set<InterMembre> getParticipants() {
+    return participants;
+  }
+  /**
  * modifie un participant de l'evenement.
  *
  * @param participants le nouveau participants.
  */
-public void setParticipants(Set<InterMembre> participants) {
-	this.participants = participants;
-}
+  
+  public void setParticipants(Set<InterMembre> participants) {
+    this.participants = participants;
+  }
 
 
 
 
 
-@Override
+  @Override
 public int hashCode() {
-	return Objects.hash(date, duree, lieu, nbParticipantsMax, nom, participants);
-}
+    return Objects.hash(date, duree, lieu, nbParticipantsMax, nom, participants);
+  }
 
-@Override
+  @Override
 public boolean equals(Object obj) {
 	if (this == obj)
 		return true;
