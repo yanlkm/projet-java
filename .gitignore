@@ -2,4 +2,7 @@
 Projet MLL/.settings
 Projet MLL/.classpath
 /.metadata/
-projet_java_grp/.settings
+Projet MLL/.metadata
+*.checkstyle
+*.project
+Projet MLL/.project
