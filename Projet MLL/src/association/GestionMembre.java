@@ -42,14 +42,14 @@ public class GestionMembre implements InterGestionMembres {
   }
 
   public InterMembre getPresident() {
-	return president;
-}
+    return president;
+  }
 
-public void setPresident(InterMembre president) {
-	this.president = president;
-}
+  public void setPresident(InterMembre president) {
+    this.president = president;
+  }
 
-/** 
+  /** 
    * commentaire javadoc a venir.
    */
 
