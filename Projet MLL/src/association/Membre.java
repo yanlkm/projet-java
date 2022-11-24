@@ -14,8 +14,16 @@ public class Membre implements InterMembre {
   private String prenom;
   private String adresse;
   private int age;
- 
   
+  /**
+   * Constructeur de la classe Membre.
+   *
+   * @param nom du membre
+   * @param prenom du membre
+   * @param adresse du membre
+   * @param age
+   *
+   */
   public Membre(String nom, String prenom, String adresse, int age) {
     this.nom = nom;
     this.prenom = prenom;
@@ -32,20 +40,18 @@ public class Membre implements InterMembre {
    */
   @Override
   public List<Evenement> ensembleEvenements() {
+    GestionEvenements listAllEvent = new GestionEvenements();
     List<Evenement> listTemp = new ArrayList<Evenement>();
-    Evenement evt = new Evenement();
-    Association asso = new Association();
     
     List<Evenement> listGestionEvent = new ArrayList<Evenement>();
-    listGestionEvent = asso.gestionnaireEvenements();
+    listGestionEvent = listAllEvent.getListeEvenement();
     
-    List<Evenement> listAllEvent = new ArrayList<Evenement>();
-    listAllEvent = evt.ensembleEvenements();
-    
-    for(int i = 0; i < listAllEvent.size(); i++ ) {
-      //if(listAllEvent[i].)
+    for (int i = 0; i < listGestionEvent.size(); i++) {
+      if (listGestionEvent.get(i).getParticipants().contains(this)) {
+        listTemp.add(listGestionEvent.get(i));
+      }
     }
-      
+    
     return listTemp;
   }
   
@@ -57,10 +63,27 @@ public class Membre implements InterMembre {
    */
   @Override
   public List<Evenement> ensembleEvenementsAvenir() {
-    // TODO Auto-generated method stub
-    return null;
+    GestionEvenements listAllEvent = new GestionEvenements();
+    List<Evenement> listTemp = new ArrayList<Evenement>();
+    
+    List<Evenement> listGestionEvent = new ArrayList<Evenement>();
+    listGestionEvent = listAllEvent.ensembleEvenementAvenir();
+    
+    for (int i = 0; i < listGestionEvent.size(); i++) {
+      if (listGestionEvent.get(i).getParticipants().contains(this)) {
+        listTemp.add(listGestionEvent.get(i));
+      }
+    }
+    
+    return listTemp;
   }
   
+  @Override
+  public String toString() {
+    return "Membre [info=" + info + ", nom=" + nom + ", prenom=" + prenom
+        + ", adresse=" + adresse + ", age=" + age + "]";
+  }
+
   /**
    * Définit les informations personnelles du membre.
    *
@@ -68,7 +91,8 @@ public class Membre implements InterMembre {
    */
   @Override
   public void definirInformationPersonnnelle(InformationPersonnelle info) {
-    info = new InformationPersonnelle(this.nom, this.prenom, this.adresse, this.age);
+    info = new InformationPersonnelle(this.nom, this.prenom, this.adresse,
+        this.age);
   }
   
   /**

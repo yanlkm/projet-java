@@ -1,6 +1,7 @@
 package association;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 /**
@@ -69,11 +70,20 @@ public class GestionMembre implements InterGestionMembres {
   public boolean designerPresident(InterMembre membre) {
     // TODO Auto-generated method stub
     if (this.membres.contains(membre))  {
-     
-    
-    
+
+      this.president = membre;
+      return true;
+
     }
     return false;
+  }
+
+  public Set<InterMembre> getMembres() {
+    return membres;
+  }
+
+  public void setMembres(Set<InterMembre> membres) {
+    this.membres = membres;
   }
 
   /** 
@@ -83,7 +93,7 @@ public class GestionMembre implements InterGestionMembres {
   public Set<InterMembre> ensembleMembres() {
     // TODO Auto-generated method stub
     
-    return null;
+    return this.membres;
   }
 
   /** 
@@ -93,7 +103,27 @@ public class GestionMembre implements InterGestionMembres {
   public InterMembre president() {
     // TODO Auto-generated method stub
     
-    return null;
-  }	
+    return this.president;
+  }
+
+  /** 
+   * commentaire javadoc a venir.
+   */
+
+  public String toString() {
+    String n = "";
+    Iterator<InterMembre> l = this.membres.iterator();
+    while (!l.hasNext()) {
+
+      InterMembre e = (InterMembre) l;
+      if (e == this.president) {
+        n += "président : ";
+      }
+      n += e.toString();
+      l.next();
+    }
+    return n;
+  }
+
 
 }
