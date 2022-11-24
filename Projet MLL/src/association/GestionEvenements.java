@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  *Classe GestionEvenements qui gère la liste d'evennements d'une association.
@@ -47,6 +48,43 @@ public class GestionEvenements implements InterGestionEvenements  {
     this.listeEvenements = listeEvenements;
   }
 
+  
+  /**
+  * Méthode toString de la classe 'GestionEvenements'.
+
+  * @return affichage des évennements
+  * 
+  */
+  public String toString() {
+    String retour = "Liste des évènements :\n";
+    for (Evenement e : this.listeEvenements) {
+      retour = retour + e.toString() + "\n";
+    }
+    return retour;
+  }
+  
+
+  /**
+   * Méthode equals de la classe 'GestionEvenements'.
+
+   * @return affichage des évennements
+   * 
+   */
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+
+    if (obj == null) {
+      return false;
+    }
+
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    GestionEvenements other = (GestionEvenements) obj;
+    return Objects.equals(listeEvenements, other.listeEvenements);
+  }
 
 
   /**
@@ -98,10 +136,9 @@ public class GestionEvenements implements InterGestionEvenements  {
    *
    * @param evt l'événement à supprimer.
    */
-  @Override
   public void supprimerEvenement(Evenement evt) {
     for (Evenement e : this.listeEvenements) {
-      if (e == evt) {
+      if (e.equals(evt)) {
         for (InterMembre m : e.getParticipants()) {
           e.getParticipants().remove(m);
         }
@@ -117,7 +154,6 @@ public class GestionEvenements implements InterGestionEvenements  {
    *
    * @return l'ensemble des événements
    */
-  @Override
   public List<Evenement> ensembleEvenements() {
     return this.listeEvenements;
   }
@@ -129,7 +165,6 @@ public class GestionEvenements implements InterGestionEvenements  {
    *
    * @return l'ensemble des événements à venir
    */
-  @Override
   public List<Evenement> ensembleEvenementAvenir() {
     List<Evenement> avenir = new ArrayList<Evenement>();
     LocalDateTime aujourdhui = LocalDateTime.now();
@@ -153,7 +188,6 @@ public class GestionEvenements implements InterGestionEvenements  {
    *         auquel est déjà inscrit le membre ou si le nombre de participants
    *         maximum est déjà atteint
    */
-  @Override
   public boolean inscriptionEvenement(Evenement evt, InterMembre mbr) {
     if (evt.getNbParticipantsMax() == evt.getParticipants().size()) {
       return false;
@@ -179,10 +213,9 @@ public class GestionEvenements implements InterGestionEvenements  {
    *         sinon <code>false</code> si le membre n'était pas inscrit à
    *         l'événement
    */
-  @Override
   public boolean annulerEvenement(Evenement evt, InterMembre mbr) {
     for (Evenement e : mbr.ensembleEvenements()) {
-      if (evt == e) {
+      if (evt.equals(e)) {
         evt.getParticipants().remove(mbr);
         return true;
       }
