@@ -10,6 +10,10 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+ * Class Evenement qui permet une gestion crud pour des evenements.
+*/
+
 public class Evenement implements java.io.Serializable {
   
   private String nom;
@@ -209,6 +213,12 @@ public boolean equals(Object obj) {
 
   // A implémenter : retourne vrai si deux événements ne se chevauchent pas
   // dans le même lieu en même temps
+  /**
+ * function public pasDeChevauchementLieu.
+ *
+ * @param evt not null
+ * @return true
+ */
   public boolean pasDeChevauchementLieu(Evenement evt) {
     if ((this.lieu != evt.lieu) && (this.date != evt.date)) {
       return true;
@@ -220,6 +230,12 @@ public boolean equals(Object obj) {
   // A implémenter : retourne vrai si deux événements ne se chevauchent pas
   // dans le temps (indépendamment du lieu)
   
+  /**
+ * function public pasDeChevauchemenTemps.
+ *
+ * @param evt not null
+ * @return true
+ */
   public boolean pasDeChevauchementTemps(Evenement evt) {
     if ((this.duree != evt.duree)) {
       return true;
