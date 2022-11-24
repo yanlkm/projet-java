@@ -14,33 +14,33 @@ import org.junit.jupiter.api.Test;
 	
 
    /**
-   * Une information complète : prénom, nom, adresse et age.
+   * Une information complï¿½te : prï¿½nom, nom, adresse et age.
 	   */
 	  
     private GestionMembre gerer;
 	  
 	  /**
-	   * Instancie une information basique et une complète pour les tests.
+	   * Instancie une information basique et une complï¿½te pour les tests.
 	   *
-	   * @throws Exception ne peut pas être levée ici
-	   */
+	   * @throws Exception ne peut pas ï¿½tre levï¿½e ici
+	   */ bidule truc
 	  @BeforeEach
 	  void setUp() throws Exception {
-	    infoBasique = new InformationPersonnelle("Skywalker", "Luke");
+	    gerer = new InformationPersonnelle("Skywalker", "Luke");
 	    infoComplete =
-	        new InformationPersonnelle("Skywalker", "Luke", "Planète Tatooine", 20);
+	        new InformationPersonnelle("Skywalker", "Luke", "Planï¿½te Tatooine", 20);
 	  }
 	  
 	  /**
-	   * Ne fait rien après les tests : à modifier au besoin.
+	   * Ne fait rien aprï¿½s les tests : ï¿½ modifier au besoin.
 	   *
-	   * @throws Exception ne peut pas être levée ici
+	   * @throws Exception ne peut pas ï¿½tre levï¿½e ici
 	   */
 	  @AfterEach
 	  void tearDown() throws Exception {}
 	  
 	  /**
-	   * Vérifie que l'on peut positionner un age de 25 ans.
+	   * Vï¿½rifie que l'on peut positionner un age de 25 ans.
 	   */
 	  @Test
 	  void testAge25Basique() {
@@ -49,7 +49,7 @@ import org.junit.jupiter.api.Test;
 	  }
 	  
 	  /**
-	   * Vérifie qu'on ne peut pas positionner un age négatif sur une information
+	   * Vï¿½rifie qu'on ne peut pas positionner un age nï¿½gatif sur une information
 	   * basique.
 	   */
 	  @Test
@@ -59,8 +59,8 @@ import org.junit.jupiter.api.Test;
 	  }
 	  
 	  /**
-	   * Vérifie qu'on ne peut pas positionner un age négatif sur une information
-	   * complète.
+	   * Vï¿½rifie qu'on ne peut pas positionner un age nï¿½gatif sur une information
+	   * complï¿½te.
 	   */
 	  @Test
 	  void testAgeNegatifComplet() {
@@ -70,7 +70,7 @@ import org.junit.jupiter.api.Test;
 	  }
 	  
 	  /**
-	   * Vérifie qu'une adresse n'est pas null quand on crée une information
+	   * Vï¿½rifie qu'une adresse n'est pas null quand on crï¿½e une information
 	   * personnelle.
 	   */
 	  @Test
@@ -80,7 +80,7 @@ import org.junit.jupiter.api.Test;
 	  }
 	  
 	  /**
-	   * Vérifie qu'on ne peut pas positionner une adresse null sur une information
+	   * Vï¿½rifie qu'on ne peut pas positionner une adresse null sur une information
 	   * existante.
 	   */
 	  @Test
@@ -90,7 +90,7 @@ import org.junit.jupiter.api.Test;
 	  }
 	  
 	  /**
-	   * Vérifie que les paramètres des constructeurs sont correctement gérés.
+	   * Vï¿½rifie que les paramï¿½tres des constructeurs sont correctement gï¿½rï¿½s.
 	   */
 	  @Test
 	  void testConstructeur() {
