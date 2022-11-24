@@ -2,6 +2,7 @@ package association;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Définit la classe Membre.java.
@@ -28,6 +29,9 @@ public class Membre implements InterMembre {
     this.nom = nom;
     this.prenom = prenom;
     this.adresse = adresse;
+    if(age > 0) {
+      this.age = age;
+    }
     this.age = age;
     this.definirInformationPersonnnelle(info);
     this.info = getInformationPersonnelle();
@@ -83,7 +87,7 @@ public class Membre implements InterMembre {
     return "Membre [info=" + info + ", nom=" + nom + ", prenom=" + prenom
         + ", adresse=" + adresse + ", age=" + age + "]";
   }
-
+  
   /**
    * Définit les informations personnelles du membre.
    *
@@ -103,11 +107,66 @@ public class Membre implements InterMembre {
    */
   @Override
   public InformationPersonnelle getInformationPersonnelle() {
-    if ((this.info.getNom() != null) && (this.info.getPrenom() != null)) {
-      return this.info;
-    } else {
-      return null;
-    }
+    return this.info;
+  
   }
+  
+  public String getNom() {
+    return nom;
+  }
+  
+  public void setNom(String nom) {
+    this.nom = nom;
+  }
+  
+  public String getPrenom() {
+    return prenom;
+  }
+  
+  public void setPrenom(String prenom) {
+    this.prenom = prenom;
+  }
+  
+  public String getAdresse() {
+    return adresse;
+  }
+  
+  public void setAdresse(String adresse) {
+    this.adresse = adresse;
+  }
+  
+  public int getAge() {
+    return age;
+  }
+  
+  public void setAge(int age) {
+    this.age = age;
+  }
+  
+  @Override
+  public int hashCode() {
+    return Objects.hash(adresse, age, info, nom, prenom);
+  }
+  
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+      
+    if (obj == null) {
+      return false;
+    }
+      
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+      
+    Membre other = (Membre) obj;
+    return Objects.equals(adresse, other.adresse) && age == other.age
+        && Objects.equals(info, other.info) && Objects.equals(nom, other.nom)
+        && Objects.equals(prenom, other.prenom);
+  }
+  
   
 }
