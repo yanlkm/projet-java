@@ -30,7 +30,7 @@ public class GestionMembre implements InterGestionMembres {
   /** 
    * commentaire javadoc a venir.
    */
-   
+  
   public boolean ajouterMembre(InterMembre membre) {
     // TODO Auto-generated method stub
     
@@ -47,15 +47,6 @@ public class GestionMembre implements InterGestionMembres {
 
   public void setPresident(InterMembre president) {
     this.president = president;
-  }
- 
-
-  public Set<InterMembre> getMembres() {
-    return membres;
-  }
-
-  public void setMembres(Set<InterMembre> membres) {
-    this.membres = membres;
   }
 
   /** 
@@ -77,9 +68,8 @@ public class GestionMembre implements InterGestionMembres {
 
   public boolean designerPresident(InterMembre membre) {
     // TODO Auto-generated method stub
-    if (this.membres.contains(membre)) {
-      this.president = membre;
-      return true;
+    if (this.membres.contains(membre))  {
+     
     
     
     }
