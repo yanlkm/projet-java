@@ -2,6 +2,7 @@ package association;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Définit la classe Membre.java.
@@ -142,4 +143,20 @@ public class Membre implements InterMembre {
     this.age = age;
   }
   
+  @Override
+public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    Membre other = (Membre) obj;
+    return Objects.equals(prenom, other.prenom) && age == other.age 
+        && Objects.equals(nom, other.nom)
+        && Objects.equals(adresse, other.adresse) && Objects.equals(info, other.info);
+  }
 }
