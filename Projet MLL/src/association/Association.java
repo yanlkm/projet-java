@@ -15,7 +15,7 @@ import java.io.IOException;
 public class Association implements InterGestionAssociation {
   
   /**
- * Appek aux interface de gestion des membres et des évenement de l'association..
+ * Appel aux interface de gestion des membres et des évenement de l'association..
  */
   public InterGestionEvenements gestionEvent = null;
   public InterGestionMembres gestionMember = null;
@@ -35,7 +35,7 @@ public class Association implements InterGestionAssociation {
   /**
    * Création, si non-existant, d'une instance du gestionnaire de membre.
    *
-   * @return l'instance du gestionnaire d'évènement
+   * @return l'instance du gestionnaire de membre
    */
   
   @Override
@@ -45,9 +45,13 @@ public class Association implements InterGestionAssociation {
     }
     return this.gestionnaireMembre();
   }
+  /**
+   * Sauvegarde des données fournies dans un fichier dont le nom est fourni 
+   * en paramètre de la méthode.
+   */
   
   @Override
-  public void sauvegarderDonnees(String nomFichier) throws IOException {
+  public void sauvegarderDonnees(String nomFichier) {
     try {
       BufferedWriter writer = new BufferedWriter(new FileWriter(nomFichier));
       writer.write("placeholder du truc à écrire");
@@ -58,9 +62,13 @@ public class Association implements InterGestionAssociation {
     
     
   }
+  /**
+   * Charge des données fournies dans un fichier dont le nom est fourni 
+   * en paramètre de la méthode.
+   */
   
   @Override
-  public void chargerDonnees(String nomFichier) throws IOException {
+  public void chargerDonnees(String nomFichier)  {
     try {
       BufferedReader reader = new BufferedReader(new FileReader(nomFichier));
       System.out.println(reader.readLine());
