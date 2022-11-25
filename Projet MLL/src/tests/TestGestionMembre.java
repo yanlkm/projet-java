@@ -23,12 +23,11 @@ import org.junit.jupiter.api.Test;
 	   * Instancie une information basique et une compl�te pour les tests.
 	   *
 	   * @throws Exception ne peut pas �tre lev�e ici
-	   */ c'est du bon pas la
+	   */ 
 	  @BeforeEach
 	  void setUp() throws Exception {
-	    gerer = new InformationPersonnelle("Skywalker", "Luke");
-	    infoComplete =
-	        new InformationPersonnelle("Skywalker", "Luke", "Plan�te Tatooine", 20);
+	    gerer = new GestionMembre();
+	    
 	  }
 	  
 	  /**
