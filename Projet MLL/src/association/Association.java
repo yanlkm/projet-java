@@ -7,22 +7,24 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 /**
- * Gestion générales de l'association :
+ * Gestion générales de l'association.
  * 
  *
  * @author Sébastien le Lez
  */
 public class Association implements InterGestionAssociation {
   
-/**
- * Appek aux interface de gestion des membres et des évenement de l'association
+  /**
+ * Appek aux interface de gestion des membres et des évenement de l'association..
  */
   public InterGestionEvenements gestionEvent = null;
   public InterGestionMembres gestionMember = null;
   /**
-   * Création, si non, existant, d'une instance du gestionnaire d'évènement
+   * Création, si non-existant, d'une instance du gestionnaire d'évènement.
+   *
    * @return l'instance du gestionnaire d'évènement
    */
+  
   @Override
   public InterGestionEvenements gestionnaireEvenements() {
     if (this.gestionEvent == null) {
@@ -30,6 +32,11 @@ public class Association implements InterGestionAssociation {
     }
     return this.gestionEvent; 
   }
+  /**
+   * Création, si non-existant, d'une instance du gestionnaire de membre.
+   *
+   * @return l'instance du gestionnaire d'évènement
+   */
   
   @Override
   public InterGestionMembres gestionnaireMembre() {
