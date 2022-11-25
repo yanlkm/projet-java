@@ -16,7 +16,7 @@ import java.util.Objects;
 public class GestionEvenements implements InterGestionEvenements  {
   
   
-  public List<Evenement> listeEvenements;
+  private List<Evenement> listeEvenements;
   
  
   /**
@@ -68,7 +68,7 @@ public class GestionEvenements implements InterGestionEvenements  {
   /**
    * Méthode equals de la classe 'GestionEvenements'.
 
-   * @return affichage des évennements
+   * @return true si c'est égal et false si c'est différents
    * 
    */
   @Override
