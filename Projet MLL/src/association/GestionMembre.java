@@ -110,9 +110,42 @@ public class GestionMembre implements InterGestionMembres {
    * commentaire javadoc a venir.
    */
 
+  
+  public boolean equals(Object o) {
+    boolean res = false;
+    if (this == o) {
+      return true;
+    }
+    if (o == null) {
+      return false;
+    }
+
+    if (!(o instanceof GestionMembre)) {
+      return false;
+    }
+    InterMembre member = (InterMembre) o;
+    Iterator<InterMembre> l = this.membres.iterator();
+    l.next();
+    while (!l.hasNext()) {
+
+      if (member == l) {
+        res = true;
+      }
+      
+      l.next();
+    }
+    return res; 
+
+  }
+
+  /** 
+   * commentaire javadoc a venir.
+   */
+
   public String toString() {
     String n = "";
     Iterator<InterMembre> l = this.membres.iterator();
+    l.next();
     while (!l.hasNext()) {
 
       InterMembre e = (InterMembre) l;
