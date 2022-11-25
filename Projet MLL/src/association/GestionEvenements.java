@@ -16,7 +16,7 @@ import java.util.Objects;
 public class GestionEvenements implements InterGestionEvenements  {
   
   
-  public List<Evenement> listeEvenements;
+  private List<Evenement> listeEvenements;
   
  
   /**
@@ -55,6 +55,7 @@ public class GestionEvenements implements InterGestionEvenements  {
   * @return affichage des évennements
   * 
   */
+  @Override
   public String toString() {
     String retour = "Liste des évènements :\n";
     for (Evenement e : this.listeEvenements) {
@@ -67,9 +68,10 @@ public class GestionEvenements implements InterGestionEvenements  {
   /**
    * Méthode equals de la classe 'GestionEvenements'.
 
-   * @return affichage des évennements
+   * @return true si c'est égal et false si c'est différents
    * 
    */
+  @Override
   public boolean equals(Object obj) {
     if (this == obj) {
       return true;

@@ -19,21 +19,16 @@ class TestMembre {
   /**
    * Une information basique : prénom et nom.
    */
-  private Membre infoBasique;
+  private Membre membreTest;  
   /**
-   * Une information complète : prénom, nom, adresse et age.
-   */
-  private Membre infoComplete;
-  
-  /**
-   * Instancie une information basique et une complète pour les tests.
+   * Instancie un membre basique pour les tests.
    *
    * @throws Exception ne peut pas être levée ici
    */
+  
   @BeforeEach
   void setUp() throws Exception {
-    infoBasique = new Membre("Skywalker", "Luke", "UBO", 23);
-    infoComplete = new Membre("Skywalker", "Luke", "Planète Tatooine", 20);
+    membreTest = new Membre("Skywalker", "Luke", "UBO", 23);
   }
   
   /**
@@ -49,8 +44,8 @@ class TestMembre {
    */
   @Test
   void testAge25Basique() {
-    infoBasique.setAge(25);
-    assertEquals(infoBasique.getAge(), 25);
+    membreTest.setAge(25);
+    assertEquals(membreTest.getAge(), 25);
   }
   
   /**
@@ -59,20 +54,10 @@ class TestMembre {
    */
   @Test
   void testAgeNegatifBasique() {
-    infoBasique.setAge(-20);
-    assertTrue(infoBasique.getAge() != -20);
+    membreTest.setAge(-20);
+    assertTrue(membreTest.getAge() != -20);
   }
-  
-  /**
-   * Vérifie qu'on ne peut pas positionner un age négatif sur une information
-   * complète.
-   */
-  @Test
-  void testAgeNegatifComplet() {
-    int age = infoComplete.getAge();
-    infoComplete.setAge(-20);
-    assertEquals(infoComplete.getAge(), age);
-  }
+
   
   /**
    * Vérifie qu'une adresse n'est pas null quand on crée une information
@@ -80,20 +65,9 @@ class TestMembre {
    */
   @Test
   void testAdresseNonNull() {
-    assertTrue(infoBasique.getAdresse() != null);
-    assertTrue(infoComplete.getAdresse() != null);
+    assertTrue(membreTest.getAdresse() != null);
   }
-  
-  /**
-   * Vérifie qu'on ne peut pas positionner une adresse null sur une information
-   * existante.
-   */
-  @Test
-  void testSetterAdresseNull() {
-    infoComplete.setAdresse(null);
-    assertTrue(infoComplete.getAdresse() != null);
-  }
-  
+    
   /**
    * Vérifie que les paramètres des constructeurs sont correctement gérés.
    */

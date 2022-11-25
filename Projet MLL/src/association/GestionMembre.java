@@ -28,6 +28,23 @@ public class GestionMembre implements InterGestionMembres {
    
   }
 
+  public void setPresident(InterMembre president) {
+    this.president = president;
+  }
+
+  public InterMembre getPresident() {
+    return president;
+  }
+
+
+  public void setMembres(Set<InterMembre> membres) {
+    this.membres = membres;
+  }
+  
+  public Set<InterMembre> getMembres() {
+    return membres;
+  }
+ 
   /** 
    * commentaire javadoc a venir.
    */
@@ -42,13 +59,6 @@ public class GestionMembre implements InterGestionMembres {
     return false;
   }
 
-  public InterMembre getPresident() {
-    return president;
-  }
-
-  public void setPresident(InterMembre president) {
-    this.president = president;
-  }
 
   /** 
    * commentaire javadoc a venir.
@@ -78,13 +88,9 @@ public class GestionMembre implements InterGestionMembres {
     return false;
   }
 
-  public Set<InterMembre> getMembres() {
-    return membres;
-  }
 
-  public void setMembres(Set<InterMembre> membres) {
-    this.membres = membres;
-  }
+
+
 
   /** 
    * commentaire javadoc a venir.
@@ -110,9 +116,42 @@ public class GestionMembre implements InterGestionMembres {
    * commentaire javadoc a venir.
    */
 
+  
+  public boolean equals(Object o) {
+    boolean res = false;
+    if (this == o) {
+      return true;
+    }
+    if (o == null) {
+      return false;
+    }
+
+    if (!(o instanceof GestionMembre)) {
+      return false;
+    }
+    InterMembre member = (InterMembre) o;
+    Iterator<InterMembre> l = this.membres.iterator();
+    l.next();
+    while (!l.hasNext()) {
+
+      if (member == l) {
+        res = true;
+      }
+      
+      l.next();
+    }
+    return res; 
+
+  }
+
+  /** 
+   * commentaire javadoc a venir.
+   */
+
   public String toString() {
     String n = "";
     Iterator<InterMembre> l = this.membres.iterator();
+    l.next();
     while (!l.hasNext()) {
 
       InterMembre e = (InterMembre) l;
