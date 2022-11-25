@@ -29,7 +29,7 @@ public class Membre implements InterMembre {
     this.nom = nom;
     this.prenom = prenom;
     this.adresse = adresse;
-    if(age > 0) {
+    if (age > 0) {
       this.age = age;
     }
     this.age = age;

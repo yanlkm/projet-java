@@ -1,5 +1,7 @@
 package association;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 
 /**
@@ -32,7 +34,14 @@ public class Association implements InterGestionAssociation {
   
   @Override
   public void sauvegarderDonnees(String nomFichier) throws IOException {
-    // TODO Auto-generated method stub
+    try {
+      BufferedWriter writer = new BufferedWriter(new FileWriter("output.txt"));
+      writer.write("placeholder du truc à écrire");
+      writer.close();
+    } catch (IOException e) {
+      e.getStackTrace();
+    }
+    
     
   }
   
