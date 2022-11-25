@@ -55,6 +55,7 @@ public class GestionEvenements implements InterGestionEvenements  {
   * @return affichage des évennements
   * 
   */
+  @Override
   public String toString() {
     String retour = "Liste des évènements :\n";
     for (Evenement e : this.listeEvenements) {
@@ -70,6 +71,7 @@ public class GestionEvenements implements InterGestionEvenements  {
    * @return affichage des évennements
    * 
    */
+  @Override
   public boolean equals(Object obj) {
     if (this == obj) {
       return true;
