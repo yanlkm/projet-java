@@ -1,6 +1,7 @@
 package association;
 
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ public class GestionEvenements implements InterGestionEvenements  {
    * @return listeEvenements
    */
   public List<Evenement> getListeEvenement() {
-    return listeEvenements;
+    return this.listeEvenements;
   }
 
 
@@ -110,14 +111,17 @@ public class GestionEvenements implements InterGestionEvenements  {
   public Evenement creerEvenement(String nom, String lieu, int jour, Month mois,
       int annee, int heure, int minutes, int duree, int nbParticipants) {
     
-    if (jour < 0 || jour > 31 || heure < 0 || heure > 23 || minutes < 0 || minutes > 59) {
-      return null;
-    }
-    
     int minutesduree = minutes + duree;
-    LocalDateTime d = LocalDateTime.of(annee, mois, jour, heure, minutes, 0, 0);
-    LocalDateTime dduree = LocalDateTime.of(annee, mois, jour, heure, minutesduree, 0, 0);
     
+    try {
+      LocalDateTime.of(annee, mois, jour, heure, minutes, 0, 0);
+      LocalDateTime.of(annee, mois, jour, heure, minutesduree, 0, 0);   
+    } catch (Exception e) {
+      return null;   
+    }
+
+    LocalDateTime d = LocalDateTime.of(annee, mois, jour, heure, minutes, 0, 0);
+    LocalDateTime dduree = LocalDateTime.of(annee, mois, jour, heure, minutesduree, 0, 0);  
     
     for (Evenement e : this.listeEvenements) {
       if (e.getLieu() == lieu && e.getDate().isAfter(d) && e.getDate().isBefore(dduree)) {
@@ -125,9 +129,10 @@ public class GestionEvenements implements InterGestionEvenements  {
       }
     }
     
-    Evenement e = new Evenement(nom, lieu, d, duree, nbParticipants, null);
-    this.listeEvenements.add(e);
-    return  e;
+    Evenement e1 = new Evenement(nom, lieu, d, duree, nbParticipants, null);
+    this.listeEvenements.add(e1);
+    return  e1;
+   
   }
 
 
