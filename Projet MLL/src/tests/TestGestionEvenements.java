@@ -80,6 +80,7 @@ class TestGestionEvenements {
   /**
    * Vérifie que l'on peut supprimer un évenement à la liste des évenements.
    */
+  @Test
   void testSupprimerEvenement() {
       
     gestE.supprimerEvenement(e1);
@@ -92,6 +93,7 @@ class TestGestionEvenements {
   /**
    * Vérifie que la fonction ensembleEvenements fonctionne.
    */
+  @Test
   void testEnsembleEvenement() {
     Month mois = Month.valueOf("January");
     e2 = gestE.creerEvenement("Concours", "Brest", 5, mois, 2022, 16, 54, 800, 50);
@@ -103,6 +105,7 @@ class TestGestionEvenements {
   /**
    * Vérifie que la fonction ensembleEvenementsAvenir fonctionne.
    */
+  @Test
   void testEnsembleEvenementAvenir() {
     List<Evenement> gestAvenir = new ArrayList<Evenement>();
     gestAvenir = gestE.ensembleEvenementAvenir();
@@ -114,6 +117,7 @@ class TestGestionEvenements {
   /**
    * Vérifie que la fonction inscriptionEvenement fonctionne.
    */
+  @Test
   void testInscriptionEvenement() {
     Membre m = new Membre("Charlotte", "Menou", "Landivisiau", 21); 
     Membre m2 = new Membre("Gael", "Menou", "Landivisiau", 18);
@@ -126,6 +130,7 @@ class TestGestionEvenements {
   /**
    * Vérifie que la fonction annulerEvenement fonctionne.
    */
+  @Test
   void testAnnulerEvenement() {
     Membre m = new Membre("Charlotte", "Menou", "Landivisiau", 21); 
     Membre m2 = new Membre("Gael", "Menou", "Landivisiau", 18);
