@@ -63,11 +63,14 @@ class TestGestionEvenements {
   @Test
   void testNouvelEvenement() {
     
-    Month mois = Month.valueOf("July");
-    
-    //les évenements e1, e2, et e3 sont compatible mais pas e1, et e4.
-    e1 = gestE.creerEvenement("Présentation", "Landivisiau", 13, mois, 2023, 12, 54, 200, 100);
-    assertTrue(gestE.getListeEvenement().size() == 1);
+    Month mois = Month.valueOf("JULY");
+
+    e1 = 
+        gestE.creerEvenement("Présentation", "Landivisiau", 13, mois, 2021, 12, 47, 120, 10);
+    List<Evenement> l = new ArrayList<Evenement>();
+    l.add(e1);
+    assertTrue(gestE.getListeEvenement() == l);
+
     e2 = gestE.creerEvenement("Concours", "Brest", 5, mois, 2023, 16, 54, 800, 50);
     assertTrue(gestE.getListeEvenement().size() == 2);
     e3 = gestE.creerEvenement("Salon", "Saint-Sauveur", 22, mois, 2023, 8, 54, 500, 10);
@@ -95,7 +98,8 @@ class TestGestionEvenements {
    */
   @Test
   void testEnsembleEvenement() {
-    Month mois = Month.valueOf("January");
+    Month mois = Month.valueOf("JULY");
+    
     e2 = gestE.creerEvenement("Concours", "Brest", 5, mois, 2022, 16, 54, 800, 50);
     
     assertTrue(gestE.ensembleEvenements().size() == 2);
