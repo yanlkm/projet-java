@@ -1,6 +1,8 @@
 package association;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -35,11 +37,11 @@ public class Association implements InterGestionAssociation {
   @Override
   public void sauvegarderDonnees(String nomFichier) throws IOException {
     try {
-      BufferedWriter writer = new BufferedWriter(new FileWriter("output.txt"));
+      BufferedWriter writer = new BufferedWriter(new FileWriter(nomFichier));
       writer.write("placeholder du truc à écrire");
       writer.close();
     } catch (IOException e) {
-      e.getStackTrace();
+      e.printStackTrace();
     }
     
     
@@ -47,8 +49,13 @@ public class Association implements InterGestionAssociation {
   
   @Override
   public void chargerDonnees(String nomFichier) throws IOException {
-    // TODO Auto-generated method stub
-    
+    try {
+      BufferedReader reader = new BufferedReader(new FileReader(nomFichier));
+      System.out.println(reader.readLine());
+      reader.close();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
   
 }
