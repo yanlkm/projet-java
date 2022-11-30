@@ -38,4 +38,12 @@ public interface InterMembre {
    *         <code>null</code> si elles n'ont pas été définies
    */
   InformationPersonnelle getInformationPersonnelle();
+  
+  InformationPersonnelle getInfo();
+
+  void setInfo(InformationPersonnelle info);
+
+  List<Evenement> getListMesEvenements();
+
+  void setListMesEvenements(List<Evenement> listMesEvenements);
 }
