@@ -22,14 +22,14 @@ import org.junit.jupiter.api.Test;
 class TestEvenement {
   
   /**
-  * Une information complète : nom, lieu, date, duree,nbParicipantsMax,participants.
+  * Une information complï¿½te : nom, lieu, date, duree,nbParicipantsMax,participants.
   */
   private Evenement infoComplete;
   
   /**
-   * Instancie une information complète pour les tests.
+   * Instancie une information complï¿½te pour les tests.
    *
-   * @throws Exception ne peut pas être levée ici
+   * @throws Exception ne peut pas ï¿½tre levï¿½e ici
    */
   
   @BeforeEach
@@ -38,16 +38,16 @@ class TestEvenement {
         new Evenement("Vieille Charrues", "2022-06-06 15:00:00", "Carhaix", 10, 2000, "Didier");
   } 
   /**
-   * Ne fait rien après les tests : à modifier au besoin.
+   * Ne fait rien aprï¿½s les tests : ï¿½ modifier au besoin.
    *
-   * @throws Exception ne peut pas être levée ici
+   * @throws Exception ne peut pas ï¿½tre levï¿½e ici
    */
   
   @AfterEach
   void tearDown() throws Exception {}
   
   /**
-   * Vérifie que l'on peut modifier le nom de l'evenement.
+   * Vï¿½rifie que l'on peut modifier le nom de l'evenement.
    */
   
   @Test
@@ -56,7 +56,7 @@ class TestEvenement {
     assertEquals(infoComplete.getNom(), "panorama");
   }
   /**
-   * Vérifie que l'on peut modifier le lieu de l'evenement.
+   * Vï¿½rifie que l'on peut modifier le lieu de l'evenement.
    */
   
   @Test
@@ -65,7 +65,7 @@ class TestEvenement {
     assertEquals(infoComplete.getNom(), "Brest");
   }
   /**
-   * Vérifie qu'on ne peut pas positionner un nombre de participant négatif sur une information
+   * Vï¿½rifie qu'on ne peut pas positionner un nombre de participant nï¿½gatif sur une information
    * complete.
    */
   
@@ -76,7 +76,7 @@ class TestEvenement {
   }
   
   /*/**
-   * Vérifie qu'on ne peut pas positionner un nombre de participant négatif sur une information
+   * Vï¿½rifie qu'on ne peut pas positionner un nombre de participant nï¿½gatif sur une information
    * complete.
    */
   /*
@@ -87,7 +87,7 @@ class TestEvenement {
   }*/
   
   /**
-   * Vérifie qu'on ne peut pas positionner une duree négatif sur une information
+   * Vï¿½rifie qu'on ne peut pas positionner une duree nï¿½gatif sur une information
    * complete.
    */
   
@@ -97,7 +97,7 @@ class TestEvenement {
     assertTrue(infoComplete.getDuree() != -20);
   }
   /**
-   * Vérifie qu'on ne peut pas positionner une Nom null sur une information
+   * Vï¿½rifie qu'on ne peut pas positionner une Nom null sur une information
    * existante.
    */
   
@@ -107,7 +107,7 @@ class TestEvenement {
     assertTrue(infoComplete.getNom() != null);
   }
   /**
-   * Vérifie qu'on ne peut pas positionner une Lieu null sur une information
+   * Vï¿½rifie qu'on ne peut pas positionner une Lieu null sur une information
    * existante.
    */
   
@@ -117,7 +117,7 @@ class TestEvenement {
     assertTrue(infoComplete.getLieu() != null);
   }
   /**
-   * Vérifie qu'on ne peut pas positionner une Date null sur une information
+   * Vï¿½rifie qu'on ne peut pas positionner une Date null sur une information
    * existante.
    */
   
@@ -128,7 +128,7 @@ class TestEvenement {
   }
   
   /**
-   * Vérifie qu'on ne peut pas positionner une Duree null sur une information
+   * Vï¿½rifie qu'on ne peut pas positionner une Duree null sur une information
    * existante.
    */
    /*
@@ -140,7 +140,7 @@ class TestEvenement {
 */
    
   /**
-    * Vérifie que les paramètres des constructeurs sont correctement gérés.
+    * Vï¿½rifie que les paramï¿½tres des constructeurs sont correctement gï¿½rï¿½s.
     */
   
   @Test
