@@ -28,7 +28,7 @@ public class TestGestionMembre {
 
   private GestionMembre gerer;
   
-  /**
+  /** 
    * Instancie une information basique et une compl�te pour les tests.
    *
    * @throws Exception ne peut pas �tre lev�e ici
