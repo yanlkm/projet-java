@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 
 
 /**
-*Definition d'une classe implémentant l'interface IntergestionMembre qui permet de gerer
+*Definition d'une classe implï¿½mentant l'interface IntergestionMembre qui permet de gerer
 * un membre dans une association.
 
  * @author yanmarcelferel.l
@@ -24,13 +24,11 @@ import org.junit.jupiter.api.Test;
  */
 public class TestGestionMembre {
 
-  /**
-   * Une information complï¿½te : prï¿½nom, nom, adresse et age.
-   */
+  
 
   private GestionMembre gerer;
   
-  /**
+  /** 
    * Instancie une information basique et une complï¿½te pour les tests.
    *
    * @throws Exception ne peut pas ï¿½tre levï¿½e ici
@@ -50,7 +48,7 @@ public class TestGestionMembre {
   void tearDown() throws Exception {}
   
   /**
-   * Vérifie qu'on peut avoir une liste de membres à un évenement  qui est vide.
+   * Vï¿½rifie qu'on peut avoir une liste de membres ï¿½ un ï¿½venement  qui est vide.
    */
   
   @Test
@@ -65,12 +63,12 @@ public class TestGestionMembre {
   /**
    * Vï¿½rifie qu'on ne peut pas positionner un age nï¿½gatif sur une information
    * basique.
-   */
+   */ 
 
   @Test
   void testajoutunmembre() {
     Set<InterMembre> test2 = gerer.getMembres();
-    InterMembre type1 =  new Membre("Skywalker", "Luke", "UBO", 23);
+    InterMembre type1 =  new Membre("prout", "Luke", "UBA", 26);
     gerer.ajouterMembre(type1);
 
     assertEquals(gerer.getMembres(), test2);
