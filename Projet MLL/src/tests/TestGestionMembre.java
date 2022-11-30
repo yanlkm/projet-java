@@ -34,7 +34,7 @@ import org.junit.jupiter.api.Test;
 	  /**
 	   * Ne fait rien apr�s les tests : � modifier au besoin.
 	   *
-	   * @throws Exception ne peut pas �tre lev�e ici
+	   * @throws Exception ne peut pas �tre lev�e icpusssshhhhhhhhhi
 	   */
 	  @AfterEach
 	  void tearDown() throws Exception {}
