@@ -5,8 +5,10 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  *Classe GestionEvenements qui gère la liste d'evennements d'une association.
@@ -124,12 +126,12 @@ public class GestionEvenements implements InterGestionEvenements  {
     LocalDateTime dduree = LocalDateTime.of(annee, mois, jour, heure, minutesduree, 0, 0);  
     
     for (Evenement e : this.listeEvenements) {
-      if (e.getLieu() == lieu && e.getDate().isAfter(d) && e.getDate().isBefore(dduree)) {
+      if (e.getLieu().equals(lieu) && e.getDate().isAfter(d) && e.getDate().isBefore(dduree)) {
         return null;
       }
     }
-    
-    Evenement e1 = new Evenement(nom, lieu, d, duree, nbParticipants, null);
+    Set<InterMembre> participants = new HashSet<InterMembre>();
+    Evenement e1 = new Evenement(nom, lieu, d, duree, nbParticipants, participants);
     this.listeEvenements.add(e1);
     return  e1;
    
@@ -200,11 +202,12 @@ public class GestionEvenements implements InterGestionEvenements  {
       return false;
     }
     for (Evenement e : mbr.ensembleEvenements()) {
-      if (evt.getDate() == e.getDate()) {
+      if (evt.getDate().equals(e.getDate())) {
         return false;
       }
     }
     evt.getParticipants().add(mbr);
+    mbr.getListMesEvenements().add(evt);
     return true;
   }
 
