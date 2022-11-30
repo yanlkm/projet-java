@@ -11,10 +11,7 @@ import java.util.Objects;
  */
 public class Membre implements InterMembre {
   private InformationPersonnelle info;
-  private String nom;
-  private String prenom;
-  private String adresse;
-  private int age;
+  private List<Evenement> ListMesEvenements;
   
   /**
    * Constructeur de la classe Membre.
@@ -26,15 +23,12 @@ public class Membre implements InterMembre {
    *
    */
   public Membre(String nom, String prenom, String adresse, int age) {
-    this.nom = nom;
-    this.prenom = prenom;
-    this.adresse = adresse;
     if (age > 0) {
-      this.age = age;
-    }
-    this.age = age;
-    this.definirInformationPersonnnelle(info);
-    this.info = getInformationPersonnelle();
+      this.info = new InformationPersonnelle(nom, prenom, adresse, age);
+    }else {
+      this.info = new InformationPersonnelle(nom, prenom, adresse, 0);
+    }    
+    this.ListMesEvenements = new ArrayList<Evenement>();
   }
   
   /**
@@ -47,12 +41,9 @@ public class Membre implements InterMembre {
     GestionEvenements listAllEvent = new GestionEvenements();
     List<Evenement> listTemp = new ArrayList<Evenement>();
     
-    List<Evenement> listGestionEvent = new ArrayList<Evenement>();
-    listGestionEvent = listAllEvent.getListeEvenement();
-    
-    for (int i = 0; i < listGestionEvent.size(); i++) {
-      if (listGestionEvent.get(i).getParticipants().contains(this)) {
-        listTemp.add(listGestionEvent.get(i));
+    for (int i = 0; i < this.ListMesEvenements.size(); i++) {
+      if (ListMesEvenements.get(i).getParticipants().contains(this)) {
+        listTemp.add(ListMesEvenements.get(i));
       }
     }
     
@@ -82,12 +73,6 @@ public class Membre implements InterMembre {
     return listTemp;
   }
   
-  @Override
-  public String toString() {
-    return "Membre [info=" + info + ", nom=" + nom + ", prenom=" + prenom
-        + ", adresse=" + adresse + ", age=" + age + "]";
-  }
-  
   /**
    * Définit les informations personnelles du membre.
    *
@@ -95,8 +80,7 @@ public class Membre implements InterMembre {
    */
   @Override
   public void definirInformationPersonnnelle(InformationPersonnelle info) {
-    info = new InformationPersonnelle(this.nom, this.prenom, this.adresse,
-        this.age);
+    
   }
   
   /**
@@ -111,43 +95,22 @@ public class Membre implements InterMembre {
   
   }
   
-  public String getNom() {
-    return nom;
+  public InformationPersonnelle getInfo() {
+    return info;
   }
-  
-  public void setNom(String nom) {
-    this.nom = nom;
+
+  public void setInfo(InformationPersonnelle info) {
+    this.info = info;
   }
-  
-  public String getPrenom() {
-    return prenom;
+
+  public List<Evenement> getListMesEvenements() {
+    return ListMesEvenements;
   }
-  
-  public void setPrenom(String prenom) {
-    this.prenom = prenom;
+
+  public void setListMesEvenements(List<Evenement> listMesEvenements) {
+    ListMesEvenements = listMesEvenements;
   }
-  
-  public String getAdresse() {
-    return adresse;
-  }
-  
-  public void setAdresse(String adresse) {
-    this.adresse = adresse;
-  }
-  
-  public int getAge() {
-    return age;
-  }
-  
-  public void setAge(int age) {
-    this.age = age;
-  }
-  
-  @Override
-  public int hashCode() {
-    return Objects.hash(adresse, age, info, nom, prenom);
-  }
-  
+
   @Override
   public boolean equals(Object obj) {
     if (this == obj) {
@@ -163,9 +126,7 @@ public class Membre implements InterMembre {
     }
       
     Membre other = (Membre) obj;
-    return Objects.equals(adresse, other.adresse) && age == other.age
-        && Objects.equals(info, other.info) && Objects.equals(nom, other.nom)
-        && Objects.equals(prenom, other.prenom);
+    return true;
   }
   
   
