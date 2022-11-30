@@ -70,7 +70,7 @@ public class TestGestionMembre {
   @Test
   void testajoutunmembre() {
     Set<InterMembre> test2 = gerer.getMembres();
-    InterMembre type1 =  new Membre("Skywalker", "Luke", "UBO", 23);
+    InterMembre type1 =  new Membre("prout", "Luke", "UBA", 26);
     gerer.ajouterMembre(type1);
 
     assertEquals(gerer.getMembres(), test2);
