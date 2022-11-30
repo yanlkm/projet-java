@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 
 
 /**
-*Definition d'une classe implémentant l'interface IntergestionMembre qui permet de gerer
+*Definition d'une classe implï¿½mentant l'interface IntergestionMembre qui permet de gerer
 * un membre dans une association.
 
  * @author yanmarcelferel.l
@@ -24,98 +24,7 @@ import org.junit.jupiter.api.Test;
  */
 public class TestGestionMembre {
 
-  /**
-   * Une information complï¿½te : prï¿½nom, nom, adresse et age.
-<<<<<<< HEAD
-	   */
-	  
-    private GestionMembre gerer;
-	  
-	  /**
-	   * Instancie une information basique et une complï¿½te pour les tests.
-	   *
-	   * @throws Exception ne peut pas ï¿½tre levï¿½e ici
-	   */ c'est du bon pas la
-	  @BeforeEach
-	  void setUp() throws Exception {
-	    gerer = new InformationPersonnelle("Skywalker", "Luke");
-	    infoComplete =
-	        new InformationPersonnelle("Skywalker", "Luke", "Planï¿½te Tatooine", 20);
-	  }
-	  
-	  /**
-	   * Ne fait rien aprï¿½s les tests : ï¿½ modifier au besoin.
-	   *
-	   * @throws Exception ne peut pas ï¿½tre levï¿½e icpusssshhhhhhhhhi
-	   */
-	  @AfterEach
-	  void tearDown() throws Exception {}
-	  
-	  /**
-	   * Vï¿½rifie que l'on peut positionner un age de 25 ans.
-	   */
-	  @Test
-	  void testAge25Basique() {
-	    infoBasique.setAge(25);
-	    assertEquals(infoBasique.getAge(), 25);
-	  }
-	  
-	  /**
-	   * Vï¿½rifie qu'on ne peut pas positionner un age nï¿½gatif sur une information
-	   * basique.
-	   */
-	  @Test
-	  void testAgeNegatifBasique() {
-	    infoBasique.setAge(-20);
-	    assertTrue(infoBasique.getAge() != -20);
-	  }
-	  
-	  /**
-	   * Vï¿½rifie qu'on ne peut pas positionner un age nï¿½gatif sur une information
-	   * complï¿½te.
-	   */
-	  @Test
-	  void testAgeNegatifComplet() {
-	    int age = infoComplete.getAge();
-	    infoComplete.setAge(-20);
-	    assertEquals(infoComplete.getAge(), age);
-	  }
-	  
-	  /**
-	   * Vï¿½rifie qu'une adresse n'est pas null quand on crï¿½e une information
-	   * personnelle.
-	   */
-	  @Test
-	  void testAdresseNonNull() {
-	    assertTrue(infoBasique.getAdresse() != null);
-	    assertTrue(infoComplete.getAdresse() != null);
-	  }
-	  
-	  /**
-	   * Vï¿½rifie qu'on ne peut pas positionner une adresse null sur une information
-	   * existante.
-	   */
-	  @Test
-	  void testSetterAdresseNull() {
-	    infoComplete.setAdresse(null);
-	    assertTrue(infoComplete.getAdresse() != null);
-	  }
-	  
-	  /**
-	   * Vï¿½rifie que les paramï¿½tres des constructeurs sont correctement gï¿½rï¿½s.
-	   */
-	  @Test
-	  void testConstructeur() {
-	    InformationPersonnelle inf =
-	        new InformationPersonnelle("Vador", "Dark", null, -30);
-	    assertEquals(inf.getNom(), "Vador");
-	    assertEquals(inf.getPrenom(), "Dark");
-	    assertTrue(inf.getAdresse() != null);
-	    assertTrue(inf.getAge() >= 0);
-	  }
-=======
-   */
->>>>>>> branch 'main' of https://gitlab-depinfo-2022.univ-brest.fr/e22012866/projet-z.git
+  
 
   private GestionMembre gerer;
   
@@ -139,7 +48,7 @@ public class TestGestionMembre {
   void tearDown() throws Exception {}
   
   /**
-   * Vérifie qu'on peut avoir une liste de membres à un évenement  qui est vide.
+   * Vï¿½rifie qu'on peut avoir une liste de membres ï¿½ un ï¿½venement  qui est vide.
    */
   
   @Test
