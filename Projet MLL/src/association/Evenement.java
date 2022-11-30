@@ -11,7 +11,7 @@ import java.util.Objects;
 import java.util.Set;
 
 /**
- * Class Evenement qui permet une gestion crud pour des evenements.
+ * Class Evenement.
 */
 
 public class Evenement implements java.io.Serializable {
@@ -32,7 +32,7 @@ public class Evenement implements java.io.Serializable {
   
 
   /**
- * Crée un evenement avec toutes ses informations.
+ * Constructeur.
  *
  * @param nom le nom de l'evenement
  * @param lieu le lieu de l'evenement
@@ -51,8 +51,7 @@ public class Evenement implements java.io.Serializable {
     this.duree = duree;
     this.nbParticipantsMax = nbParticipantsMax;
     this.participants = participants;
-  }
-
+  }  
   /**
  * Renvoie le nom de l'evenement.
  *
@@ -216,8 +215,8 @@ public boolean equals(Object obj) {
   /**
  * function public pasDeChevauchementLieu.
  *
- * @param evt not null
- * @return true
+ * @param evt non null
+ * @return true or false
  */
   public boolean pasDeChevauchementLieu(Evenement evt) {
     if ((this.lieu != evt.lieu) && (this.date != evt.date)) {
@@ -228,20 +227,24 @@ public boolean equals(Object obj) {
 
   }
   // A implémenter : retourne vrai si deux événements ne se chevauchent pas
-  // dans le temps (indépendamment du lieu)
+  // dans le temps (indépendamment du lieu).
   
   /**
- * function public pasDeChevauchemenTemps.
+ * function public pasDeChevauchementLieu.
  *
- * @param evt not null
- * @return true
+ * @param evt non null
+ * @return true or false
  */
+ 
   public boolean pasDeChevauchementTemps(Evenement evt) {
-    if ((this.duree != evt.duree)) {
-      return true;
-    } else {
+    if (this.date.isBefore(evt.date) & this.date.plusHours(this.duree).isAfter(evt.date)) { 
+      return false; 
+    } else if (evt.date.isBefore(this.date) & evt.date.plusHours(evt.duree).isAfter(this.date)) {
       return false;
+    } else {
+      return true;
     }
+    
   }
 
   // A compléter :

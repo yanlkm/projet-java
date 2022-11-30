@@ -28,6 +28,23 @@ public class GestionMembre implements InterGestionMembres {
    
   }
 
+  public void setPresident(InterMembre president) {
+    this.president = president;
+  }
+
+  public InterMembre getPresident() {
+    return president;
+  }
+
+
+  public void setMembres(Set<InterMembre> membres) {
+    this.membres = membres;
+  }
+  
+  public Set<InterMembre> getMembres() {
+    return membres;
+  }
+ 
   /** 
    * commentaire javadoc a venir.
    */
@@ -42,13 +59,6 @@ public class GestionMembre implements InterGestionMembres {
     return false;
   }
 
-  public InterMembre getPresident() {
-    return president;
-  }
-
-  public void setPresident(InterMembre president) {
-    this.president = president;
-  }
 
   /** 
    * commentaire javadoc a venir.
@@ -78,13 +88,9 @@ public class GestionMembre implements InterGestionMembres {
     return false;
   }
 
-  public Set<InterMembre> getMembres() {
-    return membres;
-  }
 
-  public void setMembres(Set<InterMembre> membres) {
-    this.membres = membres;
-  }
+
+
 
   /** 
    * commentaire javadoc a venir.
