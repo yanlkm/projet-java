@@ -2,7 +2,7 @@ package tests;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
+import association.InformationPersonnelle;
 import association.Membre;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
  * @see association.Membre
  */
 class TestMembre {
+  private InformationPersonnelle info;
   
   /**
    * Une information basique : prénom et nom.
@@ -38,37 +39,7 @@ class TestMembre {
    */
   @AfterEach
   void tearDown() throws Exception {}
-  
-  /**
-   * Vérifie que l'on peut positionner un age de 25 ans.
-   */
-  @Test
-  void testAge25Basique() {
-    membreTest.setAge(25);
-    assertEquals(membreTest.getAge(), 25);
-  }
-  
-  /**
-   * Vérifie qu'on ne peut pas positionner un age négatif sur une information
-   * basique.
-   */
-  @Test
-  void testAgeNegatifBasique() {
-    membreTest.setAge(-20);
-    assertTrue(membreTest.getAge() != -20);
-  }
-
-  
-  /**
-   * Vérifie qu'une adresse n'est pas null quand on crée une information
-   * personnelle.
-   */
-  @Test
-  void testAdresseNonNull() {
-    assertTrue(membreTest.getAdresse() != null);
-  }
-    
-  /**
+   /**
    * Vérifie que les paramètres des constructeurs sont correctement gérés.
    */
   @Test

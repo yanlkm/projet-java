@@ -16,6 +16,14 @@ import java.util.Set;
 
 public class Evenement implements java.io.Serializable {
   
+  /**
+  *  identifiant de version serialVersionUIDuniversel pour une Serializableclasse. 
+  *  La désérialisation utilise ce nombre pour s'assurer qu'une classe chargée 
+  *  correspond exactement à un objet sérialisé.
+  *  Si aucune correspondance n'est trouvée, un InvalidClassExceptionest lancé.
+ */
+  private static final long serialVersionUID = 1L;
+
   private String nom;
 
   private String lieu;
