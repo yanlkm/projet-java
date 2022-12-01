@@ -113,21 +113,17 @@ public class GestionEvenements implements InterGestionEvenements  {
   public Evenement creerEvenement(String nom, String lieu, int jour, Month mois,
       int annee, int heure, int minutes, int duree, int nbParticipants) {
     
-    //int minutesduree = minutes + duree;
-    
     try {
-      LocalDateTime.of(annee, mois, jour, heure, minutes, 0, 000);
-      //LocalDateTime.of(annee, mois, jour, heure, minutesduree, 0, 0);   
+      LocalDateTime.of(annee, mois, jour, heure, minutes, 0, 000);  
     } catch (Exception e) {
       System.out.println(e);
       return null;   
     }
 
-    LocalDateTime d = LocalDateTime.of(annee, mois, jour, heure, minutes, 0, 000);
-    //LocalDateTime dduree = LocalDateTime.of(annee, mois, jour, heure, minutesduree, 0, 0);  
+    LocalDateTime d = LocalDateTime.of(annee, mois, jour, heure, minutes, 0, 000);  
     
     for (Evenement e : this.listeEvenements) {
-      if (e.getLieu().equals(lieu) && e.getDate().isAfter(d) /*&& e.getDate().isBefore(dduree)*/) {
+      if (e.getLieu().equals(lieu) && e.getDate().equals(d)) {
         return null;
       }
     }
@@ -228,6 +224,7 @@ public class GestionEvenements implements InterGestionEvenements  {
     for (Evenement e : mbr.ensembleEvenements()) {
       if (evt.equals(e)) {
         evt.getParticipants().remove(mbr);
+        mbr.getListMesEvenements().remove(evt);
         return true;
       }
     }

@@ -84,56 +84,61 @@ class TestGestionEvenements {
     Evenement e = 
         gestE.creerEvenement("Présentation", "Landivisiau", 12, mois, 2023, 20, 30, 300, 100);
     assertEquals(e1, e);
-
-    //e2 = gestE.creerEvenement("Concours", "Brest", 5, mois, 2023, 16, 54, 800, 50);
-    //e3 = gestE.creerEvenement("Salon", "Saint-Sauveur", 22, mois, 2023, 8, 54, 500, 10);
-    //e4 = gestE.creerEvenement("Projection", "Brest", 5, mois, 2023, 16, 54, 200, 100); 
+    List<Evenement> l = new ArrayList<Evenement>();
+    l.add(e1);
+    assertEquals(l, gestE.getListeEvenement());
+    Evenement rate = 
+        gestE.creerEvenement("Présentation", "Landivisiau", 12, mois, 2023, 20, 30, 300, 100);
+    l.add(rate);
+    assertTrue(gestE.getListeEvenement().size() == 1);
   }
   
-  /*
   
- 
   /**
    * Vérifie que l'on peut supprimer un évenement à la liste des évenements.
-  
+    */
   @Test
   void testSupprimerEvenement() {
       
     gestE.supprimerEvenement(e1);
-    assertTrue(gestE.getListeEvenement().size() == 2);
-    gestE.supprimerEvenement(e2);
-    assertTrue(gestE.getListeEvenement().size() == 1);
+    assertTrue(gestE.getListeEvenement().size() == 0);
   }
     
   
   /**
    * Vérifie que la fonction ensembleEvenements fonctionne.
-
+   */
   @Test
   void testEnsembleEvenement() {
-    Month mois = Month.valueOf("JULY");
+    Month mois = Month.valueOf("JUNE");
     
-    e2 = gestE.creerEvenement("Concours", "Brest", 5, mois, 2022, 16, 54, 800, 50);
+    Evenement e = gestE.creerEvenement("Concours", "Brest", 5, mois, 2023, 16, 54, 800, 50);
+    Evenement le = gestE.creerEvenement("Concours", "Brest", 5, mois, 2024, 16, 54, 800, 50);
+    Evenement evt = 
+        gestE.creerEvenement("Spectacle", "Saint-Sauveur", 6, mois, 2021, 16, 54, 800, 50);
     
-    assertTrue(gestE.ensembleEvenements().size() == 2);
+    assertTrue(gestE.ensembleEvenements().size() == 3);
   }
   
   
   /**
    * Vérifie que la fonction ensembleEvenementsAvenir fonctionne.
-  
+     */
   @Test
   void testEnsembleEvenementAvenir() {
-    List<Evenement> gestAvenir = new ArrayList<Evenement>();
-    gestAvenir = gestE.ensembleEvenementAvenir();
+    Month mois = Month.valueOf("JUNE");
     
-    assertTrue(gestAvenir.size() == 1);    
+    Evenement e = gestE.creerEvenement("Concours", "Brest", 5, mois, 2023, 16, 54, 800, 50);
+    Evenement le = gestE.creerEvenement("Concours", "Brest", 5, mois, 2024, 16, 54, 800, 50);
+    Evenement evt = 
+        gestE.creerEvenement("Spectacle", "Saint-Sauveur", 6, mois, 2021, 16, 54, 800, 50);
+    assertTrue(gestE.ensembleEvenementAvenir().size() == 2);    
   }
   
   
   /**
    * Vérifie que la fonction inscriptionEvenement fonctionne.
-  
+     */
   @Test
   void testInscriptionEvenement() {
     Membre m = new Membre("Charlotte", "Menou", "Landivisiau", 21); 
@@ -142,11 +147,12 @@ class TestGestionEvenements {
     gestE.inscriptionEvenement(e1, m2);
     
     assertTrue(e1.getParticipants().size() == 2);
+    assertTrue(m.ensembleEvenements().size() == 1);
   }
   
   /**
    * Vérifie que la fonction annulerEvenement fonctionne.
-   
+      */
   @Test
   void testAnnulerEvenement() {
     Membre m = new Membre("Charlotte", "Menou", "Landivisiau", 21); 
@@ -156,9 +162,10 @@ class TestGestionEvenements {
     gestE.annulerEvenement(e1, m2);
     
     assertTrue(e1.getParticipants().size() == 0);
+    assertTrue(m.ensembleEvenements().size() == 0);
   }
   
-  */
+
   
  
 }
