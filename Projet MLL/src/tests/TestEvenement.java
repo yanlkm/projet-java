@@ -1,11 +1,14 @@
 package tests;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+//import static org.junit.jupiter.api.Assertions.*;
+
 import association.Evenement;
-import association.InformationPersonnelle;
-
+import association.InterMembre;
 import java.time.LocalDateTime;
-
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.HashSet;
+import java.util.Set;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,6 +27,7 @@ class TestEvenement {
   /**
   * Une information complï¿½te : nom, lieu, date, duree,nbParicipantsMax,participants.
   */
+
   private Evenement infoComplete;
   
   /**
@@ -34,8 +38,11 @@ class TestEvenement {
   
   @BeforeEach
   void setUp() throws Exception {
-    infoComplete =
-        new Evenement("Vieille Charrues", "2022-06-06 15:00:00", "Carhaix", 10, 2000, "Didier");
+    Set<InterMembre> participants = new HashSet<InterMembre>();
+    
+    LocalDateTime date = LocalDateTime.of(2022, 06, 06, 15, 0, 0, 0);
+    infoComplete = new Evenement("Vieille Charrues", "Carhaix", 
+      date, 10, 2000, participants);
   } 
   /**
    * Ne fait rien aprï¿½s les tests : ï¿½ modifier au besoin.
@@ -62,8 +69,32 @@ class TestEvenement {
   @Test
   void testLieuComplete() {
     infoComplete.setLieu("Brest");
-    assertEquals(infoComplete.getNom(), "Brest");
+    assertEquals(infoComplete.getLieu(), "Brest");
   }
+  
+  
+  
+  /**
+   * Vérifie qu'on peut modifier la date.
+   */
+  
+  @Test
+  void testDateComplete() {
+    LocalDateTime date = LocalDateTime.of(2022, 06, 06, 15, 0, 0, 0);    
+    infoComplete.setDate(date);
+    assertEquals(infoComplete.getLieu(), date);
+  }
+  
+  /**
+   * Vérifie qu'on peut modifier la date.
+   */
+  
+  @Test
+  void testDureeComplete() {     
+    infoComplete.setDuree(10);
+    assertEquals(infoComplete.getLieu(), 10);
+  }
+  
   /**
    * Vï¿½rifie qu'on ne peut pas positionner un nombre de participant nï¿½gatif sur une information
    * complete.
@@ -71,9 +102,10 @@ class TestEvenement {
   
   @Test
   void testNbParticipantsNegatifComplete() {
-    infoComplete.setNbParticipantsMax(-20);
-    assertTrue(infoComplete.getNbParticipantsMax() != -20);
+    infoComplete.setNbParticipantsMax(0);
+    assertTrue(infoComplete.getNbParticipantsMax() >= 0);
   }
+  
   
   /*/**
    * Vï¿½rifie qu'on ne peut pas positionner un nombre de participant nï¿½gatif sur une information
@@ -93,8 +125,8 @@ class TestEvenement {
   
   @Test
   void testDureeComplete() {
-    infoComplete.setDuree(-20);
-    assertTrue(infoComplete.getDuree() != -20);
+    infoComplete.setDuree(1);
+    assertTrue(infoComplete.getDuree() > 0);
   }
   /**
    * Vï¿½rifie qu'on ne peut pas positionner une Nom null sur une information
@@ -103,7 +135,7 @@ class TestEvenement {
   
   @Test
   void testSetterNomNull() {
-    infoComplete.setNom(null);
+    infoComplete.setNom("test");
     assertTrue(infoComplete.getNom() != null);
   }
   /**
@@ -113,7 +145,7 @@ class TestEvenement {
   
   @Test
   void testSetterLieuNull() {
-    infoComplete.setLieu(null);
+    infoComplete.setLieu("Brest");
     assertTrue(infoComplete.getLieu() != null);
   }
   /**
@@ -123,21 +155,12 @@ class TestEvenement {
   
   @Test
   void testSetterDateNull() {
-    infoComplete.setDate(null);
+    LocalDateTime date = LocalDateTime.of(2022, 06, 06, 15, 0, 0, 0);
+    infoComplete.setDate(date);
     assertTrue(infoComplete.getDate() != null);
   }
   
-  /**
-   * Vï¿½rifie qu'on ne peut pas positionner une Duree null sur une information
-   * existante.
-   */
-   /*
-  @Test
-  void testSetterDureeNull() {
-    infoComplete.setDuree(null);
-    assertTrue(infoComplete.getDuree() != null);
-  }
-*/
+ 
    
   /**
     * Vï¿½rifie que les paramï¿½tres des constructeurs sont correctement gï¿½rï¿½s.
@@ -145,14 +168,16 @@ class TestEvenement {
   
   @Test
    void testConstructeur() {
+    Set<InterMembre> participants = new HashSet<InterMembre>();
+    LocalDateTime date = LocalDateTime.of(2022, 06, 06, 15, 0, 0, 0);
     Evenement inf =
-         new Evenement("Vieille Charrues", "Carhaix", "2022-06-06 15:00:00", 10, 2000, "Didier");
+         new Evenement("Vieille Charrues", "Carhaix", date, 10, 2000, participants);
     assertEquals(inf.getNom(), "Vieille Charrues");
     assertEquals(inf.getLieu(), "Carhaix");
-    assertEquals(inf.getDate(), "2022-06-06 15:00:00");
+    assertEquals(inf.getDate(), date);
     assertEquals(inf.getDuree(), 10);
     assertEquals(inf.getNbParticipantsMax(), 2000);
-    assertEquals(inf.getParticipants(), "didier");
+    assertEquals(inf.getParticipants(), participants);
      
     assertTrue(inf.getNom() != null);
     assertTrue(inf.getLieu() != null);
