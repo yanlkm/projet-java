@@ -60,6 +60,7 @@ class TestGestionEvenements {
     
   }
   
+ 
   
   /**
    * Ne fait rien après les tests : à modifier au besoin.
@@ -74,6 +75,7 @@ class TestGestionEvenements {
    * Vérifie que l'on peut ajouter un évenement à la liste des évenements 
    * sans qu'il ne soit au même endroit qu'un autre évenement et en même temps.
    */
+  
   @Test
   void testNouvelEvenement() {
     
@@ -81,9 +83,7 @@ class TestGestionEvenements {
 
     Evenement e = 
         gestE.creerEvenement("Présentation", "Landivisiau", 12, mois, 2023, 20, 30, 300, 100);
-    List<Evenement> l = new ArrayList<Evenement>();
-    l.add(e1);
-    assertEquals(gestE.getListeEvenement(), l);
+    assertEquals(e1, e);
 
     //e2 = gestE.creerEvenement("Concours", "Brest", 5, mois, 2023, 16, 54, 800, 50);
     //e3 = gestE.creerEvenement("Salon", "Saint-Sauveur", 22, mois, 2023, 8, 54, 500, 10);
