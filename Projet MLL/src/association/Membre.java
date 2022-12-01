@@ -1,8 +1,10 @@
 package association;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
 
 /**
  * Définit la classe Membre.java.
@@ -25,9 +27,10 @@ public class Membre implements InterMembre {
   public Membre(String nom, String prenom, String adresse, int age) {
     if (age > 0) {
       this.info = new InformationPersonnelle(nom, prenom, adresse, age);
-    }else {
+    } else {
       this.info = new InformationPersonnelle(nom, prenom, adresse, 0);
-    }    
+    }
+    
     this.ListMesEvenements = new ArrayList<Evenement>();
   }
   
@@ -38,16 +41,7 @@ public class Membre implements InterMembre {
    */
   @Override
   public List<Evenement> ensembleEvenements() {
-    GestionEvenements listAllEvent = new GestionEvenements();
-    List<Evenement> listTemp = new ArrayList<Evenement>();
-    
-    for (int i = 0; i < this.ListMesEvenements.size(); i++) {
-      if (ListMesEvenements.get(i).getParticipants().contains(this)) {
-        listTemp.add(ListMesEvenements.get(i));
-      }
-    }
-    
-    return listTemp;
+    return ListMesEvenements;
   }
   
   /**
@@ -58,19 +52,14 @@ public class Membre implements InterMembre {
    */
   @Override
   public List<Evenement> ensembleEvenementsAvenir() {
-    GestionEvenements listAllEvent = new GestionEvenements();
-    List<Evenement> listTemp = new ArrayList<Evenement>();
-    
-    List<Evenement> listGestionEvent = new ArrayList<Evenement>();
-    listGestionEvent = listAllEvent.ensembleEvenementAvenir();
-    
-    for (int i = 0; i < listGestionEvent.size(); i++) {
-      if (listGestionEvent.get(i).getParticipants().contains(this)) {
-        listTemp.add(listGestionEvent.get(i));
+    LocalDateTime dateToday = LocalDateTime.now();
+    List<Evenement> ListMesEvenementsAvenir = new ArrayList<Evenement>();
+    for (int i = 0; i < ListMesEvenements.size(); i++) {
+      if (dateToday.isAfter(ListMesEvenements.get(i).getDate())) {
+        ListMesEvenementsAvenir.add(ListMesEvenements.get(i));
       }
     }
-    
-    return listTemp;
+    return ListMesEvenementsAvenir;
   }
   
   /**
@@ -80,6 +69,7 @@ public class Membre implements InterMembre {
    */
   @Override
   public void definirInformationPersonnnelle(InformationPersonnelle info) {
+    this.info = info;
     
   }
   
@@ -92,42 +82,44 @@ public class Membre implements InterMembre {
   @Override
   public InformationPersonnelle getInformationPersonnelle() {
     return this.info;
-  
   }
   
-  public InformationPersonnelle getInfo() {
-    return info;
+  
+  
+  @Override
+  public int hashCode() {
+    return Objects.hash(ListMesEvenements, info);
   }
-
-  public void setInfo(InformationPersonnelle info) {
-    this.info = info;
-  }
-
-  public List<Evenement> getListMesEvenements() {
-    return ListMesEvenements;
-  }
-
-  public void setListMesEvenements(List<Evenement> listMesEvenements) {
-    ListMesEvenements = listMesEvenements;
-  }
-
+  
   @Override
   public boolean equals(Object obj) {
     if (this == obj) {
       return true;
     }
-      
     if (obj == null) {
       return false;
     }
-      
     if (getClass() != obj.getClass()) {
       return false;
     }
-      
+    
     Membre other = (Membre) obj;
-    return true;
+    return Objects.equals(ListMesEvenements, other.ListMesEvenements)
+        && Objects.equals(info, other.info);
   }
   
+  @Override
+  public InformationPersonnelle getInfo() {
+    return this.info;
+  }
   
+  @Override
+  public void setInfo(InformationPersonnelle info) {
+    
+  }
+  
+  @Override
+  public List<Evenement> getListMesEvenements() {
+    return this.ListMesEvenements;
+  }  
 }

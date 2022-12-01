@@ -24,7 +24,8 @@ import org.junit.jupiter.api.Test;
 
 class TestEvenement {
   
-  /**
+  private static final String InterMembre = null;
+/**
   * Une information complï¿½te : nom, lieu, date, duree,nbParicipantsMax,participants.
   */
 
@@ -82,17 +83,35 @@ class TestEvenement {
   void testDateComplete() {
     LocalDateTime date = LocalDateTime.of(2022, 06, 06, 15, 0, 0, 0);    
     infoComplete.setDate(date);
-    assertEquals(infoComplete.getLieu(), date);
+    assertEquals(infoComplete.getDate(), date);
   }
   
   /**
-   * Vérifie qu'on peut modifier la date.
+   * Vérifie qu'on peut modifier la duree.
    */
   
   @Test
   void testDureeComplete() {     
     infoComplete.setDuree(10);
-    assertEquals(infoComplete.getLieu(), 10);
+    assertEquals(infoComplete.getDuree(), 10);
+  }
+  
+  /**
+   * Vérifie qu'on peut modifier les participants.
+   */
+  void testnbParticipantsMaxComplete() {     
+    
+    infoComplete.setNbParticipantsMax(10);
+    assertEquals(infoComplete.getNbParticipantsMax(), 10);
+  }  
+  
+  /**
+   * Vérifie qu'on peut modifier les participants.
+   */
+  void testNbParticipantsComplete() {     
+    Set<InterMembre> participants = new HashSet<InterMembre>();
+    infoComplete.setParticipants(participants);
+    assertEquals(infoComplete.getParticipants(), participants);
   }
   
   /**
@@ -104,19 +123,7 @@ class TestEvenement {
   void testNbParticipantsNegatifComplete() {
     infoComplete.setNbParticipantsMax(0);
     assertTrue(infoComplete.getNbParticipantsMax() >= 0);
-  }
-  
-  
-  /*/**
-   * Vï¿½rifie qu'on ne peut pas positionner un nombre de participant nï¿½gatif sur une information
-   * complete.
-   */
-  /*
-  @Test
-  void testDateComplete() {
-    infoComplete.SetDate(-20);
-    assertTrue(infoComplete.getDate() != -20);
-  }*/
+  }  
   
   /**
    * Vï¿½rifie qu'on ne peut pas positionner une duree nï¿½gatif sur une information
@@ -124,7 +131,7 @@ class TestEvenement {
    */
   
   @Test
-  void testDureeComplete() {
+  void testDureeCompleteSupp() {
     infoComplete.setDuree(1);
     assertTrue(infoComplete.getDuree() > 0);
   }

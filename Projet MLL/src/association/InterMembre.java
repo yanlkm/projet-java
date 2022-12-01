@@ -44,6 +44,4 @@ public interface InterMembre {
   void setInfo(InformationPersonnelle info);
 
   List<Evenement> getListMesEvenements();
-
-  void setListMesEvenements(List<Evenement> listMesEvenements);
 }
