@@ -51,7 +51,7 @@ class TestGestionEvenements {
     
     Month mois = Month.valueOf("JULY");
     Set<InterMembre> participants = new HashSet<InterMembre>();
-    LocalDateTime date1 = LocalDateTime.of(2023, mois, 12, 20, 30, 0, 0);
+    LocalDateTime date1 = LocalDateTime.of(2023, mois, 12, 20, 30, 00, 000);
     LocalDateTime date2 = LocalDateTime.of(2023, mois, 4, 14, 15, 0, 0);
     e1 = new Evenement("Présentation", "Landivisiau", date1, 300, 100, participants);
     e2 = new Evenement("Concours", "Brest", date2, 500, 50, participants);
