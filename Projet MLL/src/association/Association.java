@@ -1,10 +1,10 @@
 package association;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 /**
  * Gestion générales de l'association.
@@ -17,8 +17,8 @@ public class Association implements InterGestionAssociation {
   /**
  * Appel aux interface de gestion des membres et des évenement de l'association..
  */
-  public InterGestionEvenements gestionEvent = null;
-  public InterGestionMembres gestionMember = null;
+  private InterGestionEvenements gestionEvent = null;
+  private InterGestionMembres gestionMember = null;
   /**
    * Création, si non-existant, d'une instance du gestionnaire d'évènement.
    *
@@ -46,36 +46,45 @@ public class Association implements InterGestionAssociation {
     return this.gestionnaireMembre();
   }
   /**
-   * Sauvegarde des données fournies dans un fichier dont le nom est fourni 
-   * en paramètre de la méthode.
+   * Sauvegarde des données fournies(ensemble des membres et évènements) dans un fichier 
+   * dont le nom est fourni en paramètre de la méthode.
    */
   
-  @Override
-  public void sauvegarderDonnees(String nomFichier) {
-    try {
-      BufferedWriter writer = new BufferedWriter(new FileWriter(nomFichier));
-      writer.write("placeholder du truc à écrire");
-      writer.close();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-    
-    
+ 
+  public void sauvegarderDonnees(String nomFichier) throws IOException {
+    FileOutputStream fos = new FileOutputStream(nomFichier);
+    ObjectOutputStream oos = new ObjectOutputStream(fos);    
+    oos.writeObject(this.gestionMember);
+    oos.writeObject(this.gestionEvent);
+    oos.close();
   }
+  
+  
+  
+
   /**
    * Charge des données fournies dans un fichier dont le nom est fourni 
    * en paramètre de la méthode.
    */
   
   @Override
-  public void chargerDonnees(String nomFichier)  {
+  public void chargerDonnees(String nomFichier) throws IOException  {
+    FileInputStream fis = new FileInputStream(nomFichier);
+    ObjectInputStream ois = new ObjectInputStream(fis);    
     try {
-      BufferedReader reader = new BufferedReader(new FileReader(nomFichier));
-      System.out.println(reader.readLine());
-      reader.close();
-    } catch (IOException e) {
+      this.gestionMember = (InterGestionMembres) ois.readObject();
+    } catch (ClassNotFoundException e1) {     
+      e1.printStackTrace();
+    } 
+    try {
+      this.gestionEvent = (InterGestionEvenements) ois.readObject();
+    } catch (ClassNotFoundException e) {
       e.printStackTrace();
-    }
+    } 
+    ois.close();
+    
+    
+
   }
   
 }
