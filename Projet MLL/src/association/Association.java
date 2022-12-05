@@ -43,7 +43,7 @@ public class Association implements InterGestionAssociation {
     if (this.gestionMember == null) {
       this.gestionMember = new GestionMembre();
     }
-    return this.gestionnaireMembre();
+    return this.gestionMember;
   }
   /**
    * Sauvegarde des données fournies(ensemble des membres et évènements) dans un fichier 

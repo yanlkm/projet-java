@@ -1,7 +1,15 @@
 package ui;
 
+import java.awt.AWTException;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import association.Association;
+import association.Evenement;
+import association.GestionEvenements;
+import association.GestionMembre;
+import association.Membre;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,6 +21,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 public class Controleur implements Initializable {
+	
+	private Association asso;
+	private GestionEvenements gestE;
+	private GestionMembre gestM;
   
   @FXML
   private TextField entreAdresseMembre;
@@ -117,7 +129,10 @@ public class Controleur implements Initializable {
   
   @FXML
   void actionBoutonNouveauMembre(ActionEvent event) {
-    
+	  entreAdresseMembre.clear();
+	  entreAgeMembre.clear();
+	  entreeNomMembre.clear();
+	  entreePrenomMembre.clear();
   }
   
   @FXML
@@ -141,38 +156,53 @@ public class Controleur implements Initializable {
   }
   
   @FXML
-  void actionBoutonValiderMembre(ActionEvent event) {
-     
+  void actionBoutonValiderMembre (ActionEvent event)  throws IOException{
+	  try {
+		  int age = Integer.parseInt(entreAgeMembre.getText());
+		  String adresse = entreAdresseMembre.getText();
+		  String nom = entreeNomMembre.getText();
+		  String prenom = entreePrenomMembre.getText();
+		  
+		  Membre m = new Membre(nom, prenom, adresse, age);
+		  
+	  }catch(Exception e) {
+		  actionBoutonNouveauMembre(event);
+	  }
+	  
   }
   
   @FXML
   void actionMenuApropos(ActionEvent event) {
-    
+	message.setText("Bonjour, bienvenue sur la première version l'appliction de la team Zmenouch.\n Dans cette application, on gère des associations, des évènements, des membres.");
   }
   
   @FXML
-  void actionMenuCharger(ActionEvent event) {
-    
+  void actionMenuCharger(ActionEvent event) throws IOException {
+    asso.chargerDonnees("test.txt");
   }
   
   @FXML
   void actionMenuNouveau(ActionEvent event) {
-    
+    gestE.getListeEvenement().clear();
+    gestM.getMembres().clear();
   }
   
   @FXML
   void actionMenuQuitter(ActionEvent event) {
-    
+    System.exit(0);
   }
   
   @FXML
-  void actionMenuSauvegarder(ActionEvent event) {
-    
+  void actionMenuSauvegarder(ActionEvent event) throws IOException {
+    asso.sauvegarderDonnees("test.txt");
   }
   
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     System.out.println("Initialisation de l'interface");
+    asso = new Association();
+    gestE = (GestionEvenements) asso.gestionnaireEvenements();
+    gestM = (GestionMembre) asso.gestionnaireMembre();
   }
   
 }
