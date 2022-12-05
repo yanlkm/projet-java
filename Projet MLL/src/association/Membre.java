@@ -84,6 +84,13 @@ public class Membre implements InterMembre {
     return this.info;
   }
   
+  public Membre verifierMembre(InterMembre membre) {
+	    
+	    if (this.info.getNom() == membre.getInfo().getNom() && this.info.getPrenom() == membre.getInfo().getPrenom()) {
+	      return this;
+	    }
+	    return null;
+	  }
   
   
   @Override

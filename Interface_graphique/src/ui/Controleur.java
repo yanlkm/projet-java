@@ -9,6 +9,7 @@ import association.Association;
 import association.Evenement;
 import association.GestionEvenements;
 import association.GestionMembre;
+import association.InterMembre;
 import association.Membre;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -163,8 +164,23 @@ public class Controleur implements Initializable {
 		  String nom = entreeNomMembre.getText();
 		  String prenom = entreePrenomMembre.getText();
 		  
-		  Membre m = new Membre(nom, prenom, adresse, age);
+		  Membre membre = new Membre(nom, prenom, adresse, age);
 		  
+		  boolean b = false;
+		  InterMembre membre_modifs = null;
+		  
+		  for(InterMembre m : gestM.getMembres()) {
+			 b = membre.verifierMembre(m);
+			 membre_modifs = m;
+		  }
+		  
+		  if(b) {
+			  membre_modifs.getInfo().setAdresse(adresse); 
+			  membre_modifs.getInfo().setAge(adresse);  
+		  }
+		  
+		  
+		  	
 	  }catch(Exception e) {
 		  actionBoutonNouveauMembre(event);
 	  }
