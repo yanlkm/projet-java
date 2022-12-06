@@ -3,6 +3,7 @@ package ui;
 import java.awt.AWTException;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Iterator;
 import java.util.ResourceBundle;
 
 import association.Association;
@@ -90,7 +91,15 @@ public class Controleur implements Initializable {
   
   @FXML
   void actionBoutonAfficherTousMembresMembre(ActionEvent event) {
-    
+	  Iterator<InterMembre> itValue = gestM.getMembres().iterator();
+	  
+	  while(itValue.hasNext()) {
+		  InterMembre value = (InterMembre) itValue.next();
+		  listeMembres.getItems().add(value.getInformationPersonnelle().toString());  
+	  }
+	  if(gestM.getMembres().isEmpty()) {
+		  listeMembres.getItems().add("Cette association n'a pas de membres ! "); 
+	  }
   }
   
   @FXML
@@ -105,12 +114,64 @@ public class Controleur implements Initializable {
   
   @FXML
   void actionBoutonEvenementsFutursMembre(ActionEvent event) {
-    
+	  try {
+		  int age = Integer.parseInt(entreAgeMembre.getText());
+		  String adresse = entreAdresseMembre.getText();
+		  String nom = entreeNomMembre.getText();
+		  String prenom = entreePrenomMembre.getText();
+		  
+		  Membre membre = new Membre(nom, prenom, adresse, age);
+		  
+		  Membre b = null;
+		  b = gestM.verifier(membre);
+		  
+		  if(b != null) {
+			  Iterator<Evenement> itValue =  ((GestionEvenements) b.getListMesEvenements()).ensembleEvenementAvenir().iterator();
+			  
+			  while(itValue.hasNext()) {
+				  Evenement value = (Evenement) itValue.next();
+				  listeEvenements.getItems().add(value.toString());  
+			  }
+			  if(b.getListMesEvenements().isEmpty()) {
+				  listeEvenements.getItems().add("Ce membre n'a pas d'argent.$$$"); 
+			  }
+		  }
+	  }catch(Exception e) {
+		  System.out.println("problème !!!!!!!!!!!!!!!!");
+		  System.out.println(e);
+
+	  }
   }
   
   @FXML
   void actionBoutonEvenementsMembreMembre(ActionEvent event) {
-    
+	  try {
+		  int age = Integer.parseInt(entreAgeMembre.getText());
+		  String adresse = entreAdresseMembre.getText();
+		  String nom = entreeNomMembre.getText();
+		  String prenom = entreePrenomMembre.getText();
+		  
+		  Membre membre = new Membre(nom, prenom, adresse, age);
+		  
+		  Membre b = null;
+		  b = gestM.verifier(membre);
+		  
+		  if(b != null) {
+			  Iterator<Evenement> itValue = b.getListMesEvenements().iterator();
+			  
+			  while(itValue.hasNext()) {
+				  Evenement value = (Evenement) itValue.next();
+				  listeEvenements.getItems().add(value.toString());  
+			  }
+			  if(b.getListMesEvenements().isEmpty()) {
+				  listeEvenements.getItems().add("Ce membre n'a pas d'argent.$$$"); 
+			  }
+		  }
+	  }catch(Exception e) {
+		  System.out.println("problème !!!!!!!!!!!!!!!!");
+		  System.out.println(e);
+
+	  }
   }
   
   @FXML
@@ -143,7 +204,24 @@ public class Controleur implements Initializable {
   
   @FXML
   void actionBoutonSupprimerMembre(ActionEvent event) {
-    
+	  try {
+		  int age = Integer.parseInt(entreAgeMembre.getText());
+		  String adresse = entreAdresseMembre.getText();
+		  String nom = entreeNomMembre.getText();
+		  String prenom = entreePrenomMembre.getText();
+		  
+		  Membre membre = new Membre(nom, prenom, adresse, age);
+		  
+		  gestM.supprimerMembre(membre);
+		  System.out.println(gestM);
+		  
+	  }catch(Exception e) {
+		  System.out.println("problème !!!!!!!!!!!!!!!!");
+		  System.out.println(e);
+		  e.printStackTrace();
+		  actionBoutonNouveauMembre(event);
+	  }
+	  
   }
   
   @FXML
@@ -157,7 +235,7 @@ public class Controleur implements Initializable {
   }
   
   @FXML
-  void actionBoutonValiderMembre (ActionEvent event)  throws IOException{
+  void actionBoutonValiderMembre (ActionEvent event) throws Exception{
 	  try {
 		  int age = Integer.parseInt(entreAgeMembre.getText());
 		  String adresse = entreAdresseMembre.getText();
@@ -166,26 +244,29 @@ public class Controleur implements Initializable {
 		  
 		  Membre membre = new Membre(nom, prenom, adresse, age);
 		  
-		  boolean b = false;
-		  InterMembre membre_modifs = null;
+		  Membre b = null;
+		  b = gestM.verifier(membre);
 		  
-		  for(InterMembre m : gestM.getMembres()) {
-			 b = membre.verifierMembre(m);
-			 membre_modifs = m;
-		  }
-		  
-		  if(b) {
-			  membre_modifs.getInfo().setAdresse(adresse); 
-			  membre_modifs.getInfo().setAge(adresse);  
-		  }
-		  
-		  
-		  	
+		  if(b != null ) {
+			  gestM.supprimerMembre(b);
+			  gestM.ajouterMembre(membre);
+			  labelListeAfficheeMembre.setText("prout !");
+			  
+			  System.out.println(gestM);
+			  
+		  }else {
+			  gestM.ajouterMembre(membre);
+			  System.out.println(gestM);
+			  
+		  }  	
 	  }catch(Exception e) {
+		  System.out.println("problème !!!!!!!!!!!!!!!!");
+		  System.out.println(e);
+		  e.printStackTrace();
 		  actionBoutonNouveauMembre(event);
 	  }
-	  
   }
+  
   
   @FXML
   void actionMenuApropos(ActionEvent event) {

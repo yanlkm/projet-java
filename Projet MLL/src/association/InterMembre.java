@@ -44,4 +44,6 @@ public interface InterMembre {
   void setInfo(InformationPersonnelle info);
 
   List<Evenement> getListMesEvenements();
+  
+  Membre verifierMembre(InterMembre membre);
 }
