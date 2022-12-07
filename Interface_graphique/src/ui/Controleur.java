@@ -3,8 +3,12 @@ package ui;
 import java.awt.AWTException;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
+import java.time.Month;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 import association.Association;
 import association.Evenement;
@@ -81,39 +85,78 @@ public class Controleur implements Initializable {
   
   @FXML
   void actionBoutonAfficherMembreSelectionneMembre(ActionEvent event) {
-    
+	  try {
+		  String s = listeMembres.getSelectionModel().getSelectedItem();
+		  listeMembres.getItems().clear();
+		  
+		  String[] words = s.split(" ");
+		  entreePrenomMembre.setText(words[0]);
+		  entreeNomMembre.setText(words[1]);
+		  entreAdresseMembre.setText(words[7]);
+		  entreAgeMembre.setText(words[4]);
+	  }catch(Exception e) {
+		  System.out.println("problème !!!!!!!!!!!!!!!!");
+		  System.out.println(e);
+
+	  }
   }
   
   @FXML
-  void actionBoutonAfficherParticipantsEvt(ActionEvent event) {
+  void actionBoutonAfficherParticipantsEvt(ActionEvent event) {//////////////////////////////////////////////////////////////////////
     
   }
   
   @FXML
   void actionBoutonAfficherTousMembresMembre(ActionEvent event) {
 	  Iterator<InterMembre> itValue = gestM.getMembres().iterator();
-	  
+	  listeMembres.getItems().clear();
 	  while(itValue.hasNext()) {
 		  InterMembre value = (InterMembre) itValue.next();
+		  labelListeAfficheeMembre.setText("tous les membres de l'association.");
 		  listeMembres.getItems().add(value.getInformationPersonnelle().toString());  
 	  }
 	  if(gestM.getMembres().isEmpty()) {
-		  listeMembres.getItems().add("Cette association n'a pas de membres ! "); 
+		  labelListeAfficheeMembre.setText("Cette association n'a pas de membres !");
 	  }
   }
   
   @FXML
   void actionBoutonEvenementSelectionneEvt(ActionEvent event) {
-    
+	  try {
+		  String s = listeEvenements.getSelectionModel().getSelectedItem();
+		  listeEvenements.getItems().clear();
+		  
+		  String[] words = s.split(" ");
+		  entreeNomEvt.setText(words[0]);
+		  entreeLieuEvt.setText(words[1]);
+		  String[] date = words[2].split("T");
+		  entreeDateEvt.setText(date[0]);
+		  entreeHeureEvt.setText(date[1]);
+		  entreeDureeEvt.setText(words[3]);
+		  entreeMaxParticipantsEvt.setText(words[4]);
+	  }catch(Exception e) {
+		  System.out.println("problème !!!!!!!!!!!!!!!!");
+		  System.out.println(e);
+
+	  }
   }
   
   @FXML
   void actionBoutonEvenementsFutursAssociation(ActionEvent event) {
-    
+	  Iterator<Evenement> itValue = gestE.ensembleEvenementAvenir().iterator();
+	  listeEvenements.getItems().clear();
+	  while(itValue.hasNext()) {
+		  Evenement value = itValue.next();
+		  labelListeAfficheeEvt.setText("tous les evenements futurs de l'association.");
+		  listeEvenements.getItems().add(value.toString());  
+	  }
+	  if(gestE.getListeEvenement().isEmpty()) {
+		  labelListeAfficheeMembre.setText("Cette association n'a pas d'evenements futurs !");
+	  }
   }
   
   @FXML
-  void actionBoutonEvenementsFutursMembre(ActionEvent event) {
+  void actionBoutonEvenementsFutursMembre(ActionEvent event) {/////////////////////////////////////////////////////////////////////////////////////
 	  try {
 		  int age = Integer.parseInt(entreAgeMembre.getText());
 		  String adresse = entreAdresseMembre.getText();
@@ -144,7 +187,7 @@ public class Controleur implements Initializable {
   }
   
   @FXML
-  void actionBoutonEvenementsMembreMembre(ActionEvent event) {
+  void actionBoutonEvenementsMembreMembre(ActionEvent event) {////////////////////////////////////////////////////////////////////////////////////////////////
 	  try {
 		  int age = Integer.parseInt(entreAgeMembre.getText());
 		  String adresse = entreAdresseMembre.getText();
@@ -175,18 +218,74 @@ public class Controleur implements Initializable {
   }
   
   @FXML
-  void actionBoutonIDesiscrireMembreEvenement(ActionEvent event) {
+  void actionBoutonIDesiscrireMembreEvenement(ActionEvent event) {/////////////////////////////////////////////////////////////////////
     
   }
   
   @FXML
-  void actionBoutonInscrireMembreEvenement(ActionEvent event) {
-    
+  void actionBoutonInscrireMembreEvenement(ActionEvent event) {///////////////////////////////////////////////////////////
+	  try {
+		  //récupération de l'évennement
+		  String s = listeEvenements.getSelectionModel().getSelectedItem();
+		  listeEvenements.getItems().clear();
+		  
+		  String[] words = s.split(" ");
+		  String nom = words[0];
+		  String lieu = words[1];
+		  String[] date = words[2].split("T");
+		  String thedate = date[0];
+		  String heure1 = date[1];
+		  String duree = words[3];
+		  String max = words[4];
+		  
+		  String[] words_date = thedate.split("-");
+		  String[] words_heure = heure1.split(":");
+		  int annee = Integer.parseInt(words_date[0]);
+		  int mois = Integer.parseInt(words_date[1]);
+		  int jour = Integer.parseInt(words_date[2]);
+		  int heure = Integer.parseInt(words_heure[0]);
+		  int minute = Integer.parseInt(words_heure[1]);
+		  int dure = Integer.parseInt(duree);
+		  int part_max = Integer.parseInt(max);
+		  
+		  LocalDateTime d = LocalDateTime.of(annee, mois, jour, heure, minute, 0, 000);
+		  Set<InterMembre> participants = new HashSet<InterMembre>();
+		  
+		  Evenement evt = new Evenement(nom, lieu, d, dure, part_max, participants);
+		  
+		  //récupération du membre
+		  String s2 = listeMembres.getSelectionModel().getSelectedItem();
+		  listeMembres.getItems().clear();
+		  
+		  String[] words2 = s2.split(" ");
+		  String prenom = words[0];
+		  String nom2 = words[1];
+		  String adresse = words[7];
+		  int age = Integer.parseInt(words[4]);
+		  
+		  Membre membre = new Membre(nom2, prenom, adresse, age);
+		  
+		  gestE.inscriptionEvenement(evt, membre);
+		  
+	  }catch(Exception e) {
+		  System.out.println("problème !!!!!!!!!!!!!!!!");
+		  System.out.println(e);
+		  e.printStackTrace();
+		  actionBoutonNouveauEvt(event);
+	  }
+		  
+	  
+	  
   }
   
   @FXML
   void actionBoutonNouveauEvt(ActionEvent event) {
-    
+	  entreeDateEvt.clear();
+	  entreeDureeEvt.clear();
+	  entreeHeureEvt.clear();
+	  entreeLieuEvt.clear();
+	  entreeNomEvt.clear();
+	  entreeMaxParticipantsEvt.clear();
   }
   
   @FXML
@@ -198,8 +297,39 @@ public class Controleur implements Initializable {
   }
   
   @FXML
-  void actionBoutonSupprimerEvt(ActionEvent event) {
-    
+  void actionBoutonSupprimerEvt(ActionEvent event) {///////////////////////////////////////////////////////////////////////////////
+	  try {
+		  String date = entreeDateEvt.getText();
+		  String duree = entreeDureeEvt.getText();
+		  String nom = entreeNomEvt.getText();
+		  String horaire = entreeHeureEvt.getText();
+		  String lieu = entreeLieuEvt.getText();
+		  String max = entreeMaxParticipantsEvt.getText();
+		  
+		  String[] words_date = date.split("-");
+		  String[] words_heure = horaire.split(":");
+		  int annee = Integer.parseInt(words_date[2]);
+		  int mois = Integer.parseInt(words_date[1]);
+		  int jour = Integer.parseInt(words_date[0]);
+		  int heure = Integer.parseInt(words_heure[0]);
+		  int minute = Integer.parseInt(words_heure[1]);
+		  int dure = Integer.parseInt(duree);
+		  int part_max = Integer.parseInt(max);
+		  
+		  LocalDateTime d = LocalDateTime.of(annee, mois, jour, heure, minute, 0, 000);
+		  Set<InterMembre> participants = new HashSet<InterMembre>();
+		  
+		  Evenement evt = new Evenement(nom, lieu, d, dure, part_max, participants);
+
+		  gestE.supprimerEvenement(evt);
+		  System.out.println(gestE);
+		  
+	  }catch(Exception e) {
+		  System.out.println("problème !!!!!!!!!!!!!!!!");
+		  System.out.println(e);
+		  e.printStackTrace();
+		  actionBoutonNouveauEvt(event);
+	  }
   }
   
   @FXML
@@ -226,12 +356,63 @@ public class Controleur implements Initializable {
   
   @FXML
   void actionBoutonTousEvenementsAssociationEvt(ActionEvent event) {
-    
+	  Iterator<Evenement> itValue = gestE.getListeEvenement().iterator();
+	  listeEvenements.getItems().clear();
+	  while(itValue.hasNext()) {
+		  Evenement value = itValue.next();
+		  labelListeAfficheeEvt.setText("tous les evenements de l'association.");
+		  listeEvenements.getItems().add(value.toString());  
+	  }
+	  if(gestE.getListeEvenement().isEmpty()) {
+		  labelListeAfficheeMembre.setText("Cette association n'a pas d'evenements !");
+	  }
   }
   
   @FXML
   void actionBoutonValiderEvt(ActionEvent event) {
-    
+	  try {
+		  String date = entreeDateEvt.getText();
+		  String duree = entreeDureeEvt.getText();
+		  String nom = entreeNomEvt.getText();
+		  String horaire = entreeHeureEvt.getText();
+		  String lieu = entreeLieuEvt.getText();
+		  String max = entreeMaxParticipantsEvt.getText();
+		  
+		  String[] words_date = date.split("-");
+		  String[] words_heure = horaire.split(":");
+		  int annee = Integer.parseInt(words_date[0]);
+		  int mois = Integer.parseInt(words_date[1]);
+		  int jour = Integer.parseInt(words_date[2]);
+		  int heure = Integer.parseInt(words_heure[0]);
+		  int minute = Integer.parseInt(words_heure[1]);
+		  int dure = Integer.parseInt(duree);
+		  int part_max = Integer.parseInt(max);
+		  
+		  LocalDateTime d = LocalDateTime.of(annee, mois, jour, heure, minute, 0, 000);
+		  Set<InterMembre> participants = new HashSet<InterMembre>();
+		  
+		  Evenement evt = new Evenement(nom, lieu, d, dure, part_max, participants);
+		  
+		  Evenement b = null;
+		  b = gestE.verifier(evt);
+		  
+		  if(b != null ) {
+			  gestE.supprimerEvenement(b);
+			  gestE.getListeEvenement().add(evt);
+			  
+			  System.out.println(gestE);
+			  
+		  }else {
+			  gestE.getListeEvenement().add(evt);
+			  System.out.println(gestE);
+		  }
+		  
+	  }catch(Exception e) {
+		  System.out.println("problème !!!!!!!!!!!!!!!!");
+		  System.out.println(e);
+		  e.printStackTrace();
+		  actionBoutonNouveauEvt(event);
+	  }
   }
   
   @FXML
@@ -250,7 +431,6 @@ public class Controleur implements Initializable {
 		  if(b != null ) {
 			  gestM.supprimerMembre(b);
 			  gestM.ajouterMembre(membre);
-			  labelListeAfficheeMembre.setText("prout !");
 			  
 			  System.out.println(gestM);
 			  

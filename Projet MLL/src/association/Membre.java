@@ -120,5 +120,11 @@ public class Membre implements InterMembre {
   @Override
   public List<Evenement> getListMesEvenements() {
     return this.ListMesEvenements;
+  }
+
+  @Override
+  public Membre verifierMembre(InterMembre membre) {
+    // TODO Auto-generated method stub
+    return null;
   }  
 }

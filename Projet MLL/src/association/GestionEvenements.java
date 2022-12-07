@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -143,14 +144,12 @@ public class GestionEvenements implements InterGestionEvenements  {
    * @param evt l'événement à supprimer.
    */
   public void supprimerEvenement(Evenement evt) {
-    for (Evenement e : this.listeEvenements) {
-      if (e.equals(evt)) {
-        for (InterMembre m : e.getParticipants()) {
-          e.getParticipants().remove(m);
+	  if (this.listeEvenements.contains(evt)) {
+        for (InterMembre m : evt.getParticipants()) {
+          evt.getParticipants().remove(m);
         }
-        this.listeEvenements.remove(e);
-      }
-    } 
+        this.listeEvenements.remove(evt);
+      } 
   }
   
   
@@ -229,6 +228,25 @@ public class GestionEvenements implements InterGestionEvenements  {
       }
     }
     return false;
+  }
+  
+  
+  /**
+   * verifie que deux evenements sont égaux.
+   *
+   * @return le membre si il est égal et null si il est différent
+   */
+  public Evenement verifier(Evenement evt) {
+	  
+	  Iterator<Evenement> itValue = this.listeEvenements.iterator();
+	  
+	  while(itValue.hasNext()) {
+		 Evenement value = (Evenement) itValue.next();
+		 if (value.getNom().equals(evt.getNom())) {
+			      return value;
+		}
+	  }
+	  return null;
   }
 
 }

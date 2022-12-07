@@ -153,6 +153,6 @@ public final class InformationPersonnelle implements java.io.Serializable {
   
   @Override
   public String toString() {
-    return prenom + " " + nom + " d'age " + age + " ans, habite " + adresse;
+    return prenom + " " + nom + " d age " + age + " ans habite " + adresse;
   }
 }

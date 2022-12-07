@@ -204,7 +204,7 @@ public boolean equals(Object obj) {
  * 
  *
  * @return une chaine de caractère contenant toutes les données d'un evenement.
- */
+
 
   @Override
 
@@ -212,7 +212,23 @@ public boolean equals(Object obj) {
     return "Evenement [nom=" + nom + ", lieu=" + lieu + ", date=" + date 
         + ", duree=" + duree + ", nbParticipantsMax="
         + nbParticipantsMax + ", participants=" + participants + "]";
-  }
+  }*/
+  
+  
+  /**
+   * renvoie les elements de l'evenement.
+   * 
+   *
+   * @return une chaine de caractère contenant toutes les données d'un evenement.
+   */
+
+    @Override
+
+    public String toString() {
+      return  nom + " " + lieu + " " + date 
+          + " " + duree + " "
+          + nbParticipantsMax + " " + participants ;
+    }
 
 
 
