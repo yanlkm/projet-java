@@ -169,6 +169,10 @@ public class Evenement implements java.io.Serializable {
     this.participants = participants;
   }
 
+  
+  public void addParticipant(InterMembre participant) {
+    this.participants.add(participant);
+  }
 
 
 
@@ -198,14 +202,14 @@ public boolean equals(Object obj) {
 
 
 
-
+  /*
   /**
  * renvoie les elements de l'evenement.
  * 
  *
  * @return une chaine de caractère contenant toutes les données d'un evenement.
-
-
+*/
+  /*
   @Override
 
   public String toString() {
@@ -213,7 +217,7 @@ public boolean equals(Object obj) {
         + ", duree=" + duree + ", nbParticipantsMax="
         + nbParticipantsMax + ", participants=" + participants + "]";
   }*/
-  
+
   
   /**
    * renvoie les elements de l'evenement.
@@ -222,13 +226,13 @@ public boolean equals(Object obj) {
    * @return une chaine de caractère contenant toutes les données d'un evenement.
    */
 
-    @Override
+  @Override
 
-    public String toString() {
-      return  nom + " " + lieu + " " + date 
+  public String toString() {
+    return  nom + " " + lieu + " " + date 
           + " " + duree + " "
-          + nbParticipantsMax + " " + participants ;
-    }
+          + nbParticipantsMax + " " + participants;
+  }
 
 
 
@@ -243,7 +247,7 @@ public boolean equals(Object obj) {
  * @return true or false
  */
   public boolean pasDeChevauchementLieu(Evenement evt) {
-    if ((this.lieu != evt.lieu) && (this.date != evt.date)) {
+    if ((this.lieu != evt.lieu) || (this.date != evt.date)) {
       return true;
     } else { 
       return false;
@@ -261,9 +265,9 @@ public boolean equals(Object obj) {
  */
  
   public boolean pasDeChevauchementTemps(Evenement evt) {
-    if (this.date.isBefore(evt.date) & this.date.plusHours(this.duree).isAfter(evt.date)) { 
+    if (this.date.isBefore(evt.date) && this.date.plusHours(this.duree).isAfter(evt.date)) { 
       return false; 
-    } else if (evt.date.isBefore(this.date) & evt.date.plusHours(evt.duree).isAfter(this.date)) {
+    } else if (evt.date.isBefore(this.date) && evt.date.plusHours(evt.duree).isAfter(this.date)) {
       return false;
     } else {
       return true;

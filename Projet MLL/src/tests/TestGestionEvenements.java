@@ -35,9 +35,9 @@ class TestGestionEvenements {
   private GestionEvenements gestE;
   
   private Evenement e1;
-  private Evenement e2;
-  private Evenement e3;
-  private Evenement e4;
+  //private Evenement e2;
+  //private Evenement e3;
+  //private Evenement e4;
   
   
   /**
@@ -52,11 +52,11 @@ class TestGestionEvenements {
     Month mois = Month.valueOf("JULY");
     Set<InterMembre> participants = new HashSet<InterMembre>();
     LocalDateTime date1 = LocalDateTime.of(2023, mois, 12, 20, 30, 00, 000);
-    LocalDateTime date2 = LocalDateTime.of(2023, mois, 4, 14, 15, 0, 0);
+    //LocalDateTime date2 = LocalDateTime.of(2023, mois, 4, 14, 15, 0, 0);
     e1 = new Evenement("Présentation", "Landivisiau", date1, 300, 100, participants);
-    e2 = new Evenement("Concours", "Brest", date2, 500, 50, participants);
-    e3 = new Evenement("Salon", "Landivisiau", date1, 300, 100, participants);
-    e4 = new Evenement("Projection", "Landerneau", date2, 200, 20, participants);
+    //Evenement e2 = new Evenement("Concours", "Brest", date2, 500, 50, participants);
+    //Evenement e3 = new Evenement("Salon", "Landivisiau", date1, 300, 100, participants);
+    //Evenement e4 = new Evenement("Projection", "Landerneau", date2, 200, 20, participants);
     
   }
   
@@ -112,10 +112,10 @@ class TestGestionEvenements {
   void testEnsembleEvenement() {
     Month mois = Month.valueOf("JUNE");
     
-    Evenement e = gestE.creerEvenement("Concours", "Brest", 5, mois, 2023, 16, 54, 800, 50);
-    Evenement le = gestE.creerEvenement("Concours", "Brest", 5, mois, 2024, 16, 54, 800, 50);
-    Evenement evt = 
-        gestE.creerEvenement("Spectacle", "Saint-Sauveur", 6, mois, 2021, 16, 54, 800, 50);
+    //Evenement e = gestE.creerEvenement("Concours", "Brest", 5, mois, 2023, 16, 54, 800, 50);
+    //Evenement le = gestE.creerEvenement("Concours", "Brest", 5, mois, 2024, 16, 54, 800, 50);
+    //Evenement evt = 
+    gestE.creerEvenement("Spectacle", "Saint-Sauveur", 6, mois, 2021, 16, 54, 800, 50);
     
     assertTrue(gestE.ensembleEvenements().size() == 3);
   }
@@ -128,10 +128,10 @@ class TestGestionEvenements {
   void testEnsembleEvenementAvenir() {
     Month mois = Month.valueOf("JUNE");
     
-    Evenement e = gestE.creerEvenement("Concours", "Brest", 5, mois, 2023, 16, 54, 800, 50);
-    Evenement le = gestE.creerEvenement("Concours", "Brest", 5, mois, 2024, 16, 54, 800, 50);
-    Evenement evt = 
-        gestE.creerEvenement("Spectacle", "Saint-Sauveur", 6, mois, 2021, 16, 54, 800, 50);
+    //Evenement e = gestE.creerEvenement("Concours", "Brest", 5, mois, 2023, 16, 54, 800, 50);
+    //Evenement le = gestE.creerEvenement("Concours", "Brest", 5, mois, 2024, 16, 54, 800, 50);
+    //Evenement evt = 
+    gestE.creerEvenement("Spectacle", "Saint-Sauveur", 6, mois, 2021, 16, 54, 800, 50);
     assertTrue(gestE.ensembleEvenementAvenir().size() == 2);    
   }
   

@@ -24,8 +24,8 @@ import org.junit.jupiter.api.Test;
 
 class TestEvenement {
   
-  private static final String InterMembre = null;
-/**
+  //private static final String InterMembre = null;
+  /**
   * Une information compl�te : nom, lieu, date, duree,nbParicipantsMax,participants.
   */
 

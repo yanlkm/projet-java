@@ -80,4 +80,6 @@ public interface InterGestionEvenements {
    *         l'événement
    */
   boolean annulerEvenement(Evenement evt, InterMembre mbr);
+
+ 
 }

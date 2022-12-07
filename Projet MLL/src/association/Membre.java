@@ -84,11 +84,11 @@ public class Membre implements InterMembre {
     return this.info;
   }
   
-  
+  /*
   @Override
   public int hashCode() {
     return Objects.hash(ListMesEvenements, info);
-  }
+  }*/
   
   @Override
   public boolean equals(Object obj) {
@@ -126,5 +126,21 @@ public class Membre implements InterMembre {
   public Membre verifierMembre(InterMembre membre) {
     // TODO Auto-generated method stub
     return null;
-  }  
+  } 
+  
+  /**
+ *  ajoute un evenement evt à la liste evenement.
+ *  
+ */  
+  public void addEvenement(Evenement evt) {
+    for (Evenement e : this.ListMesEvenements) {
+      if (e.pasDeChevauchementLieu(evt)) {
+        if (e.pasDeChevauchementTemps(evt)) {
+          this.ListMesEvenements.add(evt);
+        }
+        
+      }
+    }
+   
+  }
 }

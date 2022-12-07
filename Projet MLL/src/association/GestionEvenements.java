@@ -1,7 +1,7 @@
 package association;
 
 
-import java.io.IOException;
+
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.ArrayList;
@@ -144,12 +144,12 @@ public class GestionEvenements implements InterGestionEvenements  {
    * @param evt l'événement à supprimer.
    */
   public void supprimerEvenement(Evenement evt) {
-	  if (this.listeEvenements.contains(evt)) {
-        for (InterMembre m : evt.getParticipants()) {
-          evt.getParticipants().remove(m);
-        }
-        this.listeEvenements.remove(evt);
-      } 
+    if (this.listeEvenements.contains(evt)) {
+      for (InterMembre m : evt.getParticipants()) {
+        evt.getParticipants().remove(m);
+      }
+      this.listeEvenements.remove(evt);
+    } 
   }
   
   
@@ -180,34 +180,7 @@ public class GestionEvenements implements InterGestionEvenements  {
     }
     return avenir;
   }
-  
 
-  
-  /**
-   * Un membre est incrit à un événement.
-   *
-   * @param evt l'événement auquel s'inscrire
-   * @param mbr le membre qui s'inscrit
-   * @return <code>true</code> s'il n'y a pas eu de problème, <code>false</code>
-   *         si l'événement est en conflit de calendrier avec un événement
-   *         auquel est déjà inscrit le membre ou si le nombre de participants
-   *         maximum est déjà atteint
-   */
-  public boolean inscriptionEvenement(Evenement evt, InterMembre mbr) {
-    if (evt.getNbParticipantsMax() == evt.getParticipants().size()) {
-      return false;
-    }
-    for (Evenement e : mbr.ensembleEvenements()) {
-      if (evt.getDate().equals(e.getDate())) {
-        return false;
-      }
-    }
-    evt.getParticipants().add(mbr);
-    mbr.getListMesEvenements().add(evt);
-    return true;
-  }
-
-  
   
   /**
    * Désincrit un membre d'un événement.
@@ -237,16 +210,44 @@ public class GestionEvenements implements InterGestionEvenements  {
    * @return le membre si il est égal et null si il est différent
    */
   public Evenement verifier(Evenement evt) {
-	  
-	  Iterator<Evenement> itValue = this.listeEvenements.iterator();
-	  
-	  while(itValue.hasNext()) {
-		 Evenement value = (Evenement) itValue.next();
-		 if (value.getNom().equals(evt.getNom())) {
-			      return value;
-		}
-	  }
-	  return null;
+    Iterator<Evenement> itValue = this.listeEvenements.iterator();
+    while (itValue.hasNext()) {
+      Evenement value = (Evenement) itValue.next();
+      if (value.getNom().equals(evt.getNom())) {
+        return value;
+      }
+    }
+    return null;
   }
 
+  /**
+  * Un membre est incrit à un événement.
+  *
+  * @param evt l'événement auquel s'inscrire
+  * @param mbr le membre qui s'inscrit
+  * @return <code>true</code> s'il n'y a pas eu de problème, <code>false</code>
+  *         si l'événement est en conflit de calendrier avec un événement
+  *         auquel est déjà inscrit le membre ou si le nombre de participants
+  *         maximum est déjà atteint
+  */
+  @Override
+  public boolean inscriptionEvenement(Evenement evt, InterMembre mbr) {
+    if (evt.getNbParticipantsMax() == evt.getParticipants().size()) {
+      return false;
+    }
+    evt.addParticipant(mbr);
+    mbr.addEvenement(evt);
+    return true;
+  }
+
+
+
+
+
+
 }
+
+
+
+
+

@@ -4,11 +4,11 @@ package tests;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.HashSet;
-import java.util.Set;
 import association.GestionMembre;
 import association.InterMembre;
 import association.Membre;
+import java.util.HashSet;
+import java.util.Set;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -139,8 +139,8 @@ public class TestGestionMembre {
     gerer.ajouterMembre(type1);
     assertTrue(gerer.equals(type2));
   }*/
-
-  /**
+  /*
+/**
    * V�rifie qu'une adresse n'est pas null quand on cr�e une information
    * personnelle.
    
@@ -174,11 +174,11 @@ public class TestGestionMembre {
   }
 
 public GestionMembre getGerer() {
-	return gerer;
+  
 }
 
 public void setGerer(GestionMembre gerer) {
-	this.gerer = gerer;
+
 }*/
   
 }

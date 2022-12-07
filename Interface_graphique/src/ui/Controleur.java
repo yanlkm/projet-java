@@ -1,10 +1,10 @@
 package ui;
 
-import java.awt.AWTException;
+
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
-import java.time.Month;
+
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.ResourceBundle;
@@ -103,7 +103,46 @@ public class Controleur implements Initializable {
   
   @FXML
   void actionBoutonAfficherParticipantsEvt(ActionEvent event) {//////////////////////////////////////////////////////////////////////
-    
+	  try {
+		  String date = entreeDateEvt.getText();
+		  String duree = entreeDureeEvt.getText();
+		  String nom = entreeNomEvt.getText();
+		  String horaire = entreeHeureEvt.getText();
+		  String lieu = entreeLieuEvt.getText();
+		  String max = entreeMaxParticipantsEvt.getText();
+		  
+		  String[] words_date = date.split("-");
+		  String[] words_heure = horaire.split(":");
+		  int annee = Integer.parseInt(words_date[0]);
+		  int mois = Integer.parseInt(words_date[1]);
+		  int jour = Integer.parseInt(words_date[2]);
+		  int heure = Integer.parseInt(words_heure[0]);
+		  int minute = Integer.parseInt(words_heure[1]);
+		  int dure = Integer.parseInt(duree);
+		  int part_max = Integer.parseInt(max);
+		  
+		  LocalDateTime d = LocalDateTime.of(annee, mois, jour, heure, minute, 0, 000);
+		  Set<InterMembre> participants = new HashSet<InterMembre>();
+		  
+		  Evenement evt = new Evenement(nom, lieu, d, dure, part_max, participants);
+		  
+		  for(Evenement e : gestE.getListeEvenement()) {
+			  if(e.equals(evt)) {
+				  for(InterMembre m : e.getParticipants()) {
+					  labelListeAfficheeMembre.setText("tous les membres inscrits à l'évennement.");
+					  listeMembres.getItems().add(m.toString());
+				  }
+				  if(e.getParticipants().isEmpty()) {
+					  labelListeAfficheeMembre.setText("cet évenement n'a aucun membre d'inscrit !");
+				  }
+			  }
+		  }
+	  }catch(Exception e) {
+		  System.out.println("problème !!!!!!!!!!!!!!!!");
+		  System.out.println(e);
+		  e.printStackTrace();
+	  }
+	  
   }
   
   @FXML
@@ -258,14 +297,33 @@ public class Controleur implements Initializable {
 		  listeMembres.getItems().clear();
 		  
 		  String[] words2 = s2.split(" ");
-		  String prenom = words[0];
-		  String nom2 = words[1];
-		  String adresse = words[7];
-		  int age = Integer.parseInt(words[4]);
+		  String prenom = words2[0];
+		  String nom2 = words2[1];
+		  String adresse = words2[7];
+		  int age = Integer.parseInt(words2[4]);
 		  
 		  Membre membre = new Membre(nom2, prenom, adresse, age);
+		
+		  boolean b;
+		  b=gestE.inscriptionEvenement(evt, membre);
+		  if(b)
+		  {
+			  for(Evenement e : membre.getListMesEvenements()) {
+				  System.out.println(e.toString());
+			  }
+			  for(InterMembre m : evt.getParticipants()) {
+				  System.out.println(m.getInformationPersonnelle().toString());
+			  }
+		  }else{
+			  System.out.println(" bool  problème !!!!!!!!!!!!!!!!");
+			  
+		  }
+
 		  
-		  gestE.inscriptionEvenement(evt, membre);
+		  
+		  //System.out.println(membre.getListMesEvenements().toString());
+		  
+		  System.out.println("nikel !");
 		  
 	  }catch(Exception e) {
 		  System.out.println("problème !!!!!!!!!!!!!!!!");
@@ -308,9 +366,9 @@ public class Controleur implements Initializable {
 		  
 		  String[] words_date = date.split("-");
 		  String[] words_heure = horaire.split(":");
-		  int annee = Integer.parseInt(words_date[2]);
+		  int annee = Integer.parseInt(words_date[0]);
 		  int mois = Integer.parseInt(words_date[1]);
-		  int jour = Integer.parseInt(words_date[0]);
+		  int jour = Integer.parseInt(words_date[2]);
 		  int heure = Integer.parseInt(words_heure[0]);
 		  int minute = Integer.parseInt(words_heure[1]);
 		  int dure = Integer.parseInt(duree);
@@ -455,7 +513,7 @@ public class Controleur implements Initializable {
   
   @FXML
   void actionMenuCharger(ActionEvent event) throws IOException {
-    asso.chargerDonnees("test.txt");
+    this.asso.chargerDonnees("test");
   }
   
   @FXML
@@ -471,7 +529,14 @@ public class Controleur implements Initializable {
   
   @FXML
   void actionMenuSauvegarder(ActionEvent event) throws IOException {
-    asso.sauvegarderDonnees("test.txt");
+	  try {
+		  this.asso.sauvegarderDonnees("test");
+	  }catch(Exception e) {
+		  System.out.println("problème !!!!!!!!!!!!!!!!");
+		  System.out.println(e);
+		  e.printStackTrace();
+	  }
+    
   }
   
   @Override

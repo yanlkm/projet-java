@@ -17,8 +17,8 @@ public class Association implements InterGestionAssociation {
   /**
  * Appel aux interface de gestion des membres et des évenement de l'association..
  */
-  private InterGestionEvenements gestionEvent = null;
-  private InterGestionMembres gestionMember = null;
+  private GestionEvenements gestionEvent = null;
+  private GestionMembre gestionMember = null;
   /**
    * Création, si non-existant, d'une instance du gestionnaire d'évènement.
    *
@@ -72,12 +72,12 @@ public class Association implements InterGestionAssociation {
     FileInputStream fis = new FileInputStream(nomFichier);
     ObjectInputStream ois = new ObjectInputStream(fis);    
     try {
-      this.gestionMember = (InterGestionMembres) ois.readObject();
+      this.gestionMember = (GestionMembre) ois.readObject();
     } catch (ClassNotFoundException e1) {     
       e1.printStackTrace();
     } 
     try {
-      this.gestionEvent = (InterGestionEvenements) ois.readObject();
+      this.gestionEvent = (GestionEvenements) ois.readObject();
     } catch (ClassNotFoundException e) {
       e.printStackTrace();
     } 

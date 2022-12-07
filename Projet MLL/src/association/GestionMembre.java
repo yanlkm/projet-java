@@ -95,19 +95,19 @@ public class GestionMembre implements InterGestionMembres {
    * @return le membre si il est égal et null si il est différent
    */
   public Membre verifier(Membre membre) {
-	  
-	  InterMembre b = null;
-	  
-	  Iterator<InterMembre> itValue = this.membres.iterator();
-	  
-	  while(itValue.hasNext()) {
-		 Membre value = (Membre) itValue.next();
-		 if (value.getInformationPersonnelle().getNom().equals(membre.getInformationPersonnelle().getNom())
-			        && value.getInformationPersonnelle().getPrenom().equals(membre.getInformationPersonnelle().getPrenom())) {
-			      return (Membre) value;
-		}
-	  }
-	  return null;
+
+ 
+    Iterator<InterMembre> itValue = this.membres.iterator();
+    while (itValue.hasNext()) {
+      Membre value = (Membre) itValue.next();
+      if (value.getInformationPersonnelle().getNom()
+          .equals(membre.getInformationPersonnelle().getNom())
+          && value.getInformationPersonnelle().getPrenom()
+          .equals(membre.getInformationPersonnelle().getPrenom())) {
+        return (Membre) value;
+      }
+    }
+    return null;
   }
 
 
@@ -170,11 +170,11 @@ public class GestionMembre implements InterGestionMembres {
    */
 
   public String toString() {
-	  String retour = "Liste des membres :\n";
-	    for (InterMembre m : this. membres) {
-	      retour = retour + m.getInformationPersonnelle().toString() + "\n";
-	    }
-	    return retour;
+    String retour = "Liste des membres :\n";
+    for (InterMembre m : this. membres) {
+      retour = retour + m.getInformationPersonnelle().toString() + "\n";
+    }
+    return retour;
   }
 
 
