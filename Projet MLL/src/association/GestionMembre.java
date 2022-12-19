@@ -17,8 +17,11 @@ public class GestionMembre implements InterGestionMembres {
   private Set<InterMembre> membres;
   private InterMembre president;
  
-  /** 
-   * commentaire javadoc a venir.
+  /**
+   *Le constructeur qui instancie la liste des membres .
+   * 
+   * 
+   *  
    */
 
   public GestionMembre() {
@@ -28,25 +31,63 @@ public class GestionMembre implements InterGestionMembres {
    
   }
 
+  /**
+   *L'insertion d'un président .
+   * 
+
+   * @param president est le membre qui aura le rôle d'un président.
+   * 
+   *  
+   */
+ 
   public void setPresident(InterMembre president) {
+    if (!(this.membres.contains(president))) {
+      this.membres.add(president);
+    }
     this.president = president;
   }
+
+  /** 
+   *Retourne le président.
+   *
+   * @return le membre président.
+   */
 
   public InterMembre getPresident() {
     return president;
   }
 
 
+  /**
+   *L'insertion d'une liste de membres.
+   * 
+
+   * @param membres est une liste de membres avec laquelle on veut faire une insertion.
+   * 
+   *  
+   */
+
   public void setMembres(Set<InterMembre> membres) {
     this.membres = membres;
   }
   
+  /** 
+   *Retourne la liste des membres.
+   *
+   * @return la liste des membres
+   */
+
   public Set<InterMembre> getMembres() {
     return membres;
   }
  
   /** 
-   * commentaire javadoc a venir.
+   *Ajoute un membre .
+   *
+   * @return si le membre est ajouté a la liste des membres
+   *         <code>true</code> pour le supprimer,
+   *         sinon <code>false</code> ne fait rien si le membre était déjà inscrit à
+   *         la liste des membres. 
    */
   
   public boolean ajouterMembre(InterMembre membre) {
@@ -61,7 +102,12 @@ public class GestionMembre implements InterGestionMembres {
 
 
   /** 
-   * commentaire javadoc a venir.
+   *Supprime un membre s'il existe .
+   *
+   * @return si le membre appartient a la liste des membres
+   *         <code>true</code> pour le supprimer,
+   *         sinon <code>false</code> ne fait rien si le membre n'était pas inscrit à
+   *         la liste des membres. 
    */
 
   public boolean supprimerMembre(InterMembre membre) {
@@ -73,10 +119,17 @@ public class GestionMembre implements InterGestionMembres {
     return false;
   }
 
-  /** 
-   * commentaire javadoc a venir.
-   */
 
+  /**
+   * Désigne un président en si le membre existe dans la liste des mmebres.
+   *
+   * @param membre est un membre avec lequel on veut faire une verification.
+   *
+   * @return si le membre appartient a la liste des membres
+   *         <code>true</code> pour le designer en tant que president,
+   *         sinon <code>false</code> si le membre n'était pas inscrit à
+   *         la liste des membres.
+   */
   public boolean designerPresident(InterMembre membre) {
     // TODO Auto-generated method stub
     if (this.membres.contains(membre))  {
@@ -90,9 +143,12 @@ public class GestionMembre implements InterGestionMembres {
 
   
   /**
-   * verifie que deux membres sont égaux.
+   *  Verifie qu'un membre appartient à une liste d'evenements.
    *
-   * @return le membre si il est égal et null si il est différent
+   * @param membre est un membre avec lequel on veut faire une verification.
+   *
+   * @return null si le membre n'existe pas dans la liste
+   *        sinon renvoie le membre.
    */
   public Membre verifier(Membre membre) {
 
@@ -114,7 +170,9 @@ public class GestionMembre implements InterGestionMembres {
 
 
   /** 
-   * commentaire javadoc a venir.
+   *Retourne l'ensemble des membres.
+   *
+   * @return est la liste des membres 
    */
 
   public Set<InterMembre> ensembleMembres() {
@@ -124,7 +182,9 @@ public class GestionMembre implements InterGestionMembres {
   }
 
   /** 
-   * commentaire javadoc a venir.
+   *Retourne le president des membres.
+   *
+   * @return est le membre qui a le role de president
    */
  
   public InterMembre president() {
@@ -133,8 +193,14 @@ public class GestionMembre implements InterGestionMembres {
     return this.president;
   }
 
+  
+
   /** 
-   * commentaire javadoc a venir.
+   *verifie l'egalite entre deux membres.
+   *
+   * @return si il y a egalité entre l'objet (supposémment membre)
+   *         <code>true</code> ,
+   *         sinon <code>false</code> si les membres n'étaient pas égaux
    */
 
   
@@ -166,7 +232,9 @@ public class GestionMembre implements InterGestionMembres {
   }
 
   /** 
-   * commentaire javadoc a venir.
+   *Affiche la liste des membres.
+   *
+   * @return est la chaine de caracteres qui affiche des membres qui a le role de president
    */
 
   public String toString() {

@@ -2,6 +2,7 @@ package association;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
@@ -55,7 +56,7 @@ public class Membre implements InterMembre {
     LocalDateTime dateToday = LocalDateTime.now();
     List<Evenement> ListMesEvenementsAvenir = new ArrayList<Evenement>();
     for (int i = 0; i < ListMesEvenements.size(); i++) {
-      if (dateToday.isAfter(ListMesEvenements.get(i).getDate())) {
+      if (dateToday.isBefore(ListMesEvenements.get(i).getDate())) {
         ListMesEvenementsAvenir.add(ListMesEvenements.get(i));
       }
     }
@@ -107,38 +108,47 @@ public class Membre implements InterMembre {
         && Objects.equals(info, other.info);
   }
   
+  /**
+   * Renvoie les informations personnelles du membre.
+   *
+   * @return l'objet contenant les informations personnelles du membre ou >null
+   *         si elles (nom, prenom) n'ont pas été définies
+   */
   @Override
   public InformationPersonnelle getInfo() {
     return this.info;
   }
   
+  /**
+   * Définit les informations personnelles du membre.
+   *
+   * @param info les informations personnelles du membre
+   */
   @Override
   public void setInfo(InformationPersonnelle info) {
-    
+    this.info = info;
   }
   
   @Override
   public List<Evenement> getListMesEvenements() {
     return this.ListMesEvenements;
   }
-
-  @Override
-  public Membre verifierMembre(InterMembre membre) {
-    // TODO Auto-generated method stub
-    return null;
-  } 
+  
+  
   
   /**
  *  ajoute un evenement evt à la liste evenement.
  *  
  */  
   public void addEvenement(Evenement evt) {
-    for (Evenement e : this.ListMesEvenements) {
-      if (e.pasDeChevauchementLieu(evt)) {
-        if (e.pasDeChevauchementTemps(evt)) {
+    
+    Iterator<Evenement> itValue = this.ListMesEvenements.iterator();
+    while (itValue.hasNext()) {
+      Evenement value = (Evenement) itValue.next();
+      if (value.pasDeChevauchementLieu(evt)) {
+        if (value.pasDeChevauchementTemps(evt)) {
           this.ListMesEvenements.add(evt);
         }
-        
       }
     }
    

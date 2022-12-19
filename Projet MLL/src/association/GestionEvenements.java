@@ -122,14 +122,15 @@ public class GestionEvenements implements InterGestionEvenements  {
     }
 
     LocalDateTime d = LocalDateTime.of(annee, mois, jour, heure, minutes, 0, 000);  
-    
-    for (Evenement e : this.listeEvenements) {
-      if (e.getLieu().equals(lieu) && e.getDate().equals(d)) {
-        return null;
-      }
-    }
     Set<InterMembre> participants = new HashSet<InterMembre>();
     Evenement e1 = new Evenement(nom, lieu, d, duree, nbParticipants, participants);
+    
+    for (Evenement e : this.listeEvenements) {
+      if (!e.pasDeChevauchementLieu(e1) || !e.pasDeChevauchementTemps(e1)) {
+        return null;
+      }
+       
+    }
     this.listeEvenements.add(e1);
     return  e1;
    

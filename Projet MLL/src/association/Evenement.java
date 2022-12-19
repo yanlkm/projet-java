@@ -247,12 +247,16 @@ public boolean equals(Object obj) {
  * @return true or false
  */
   public boolean pasDeChevauchementLieu(Evenement evt) {
-    if ((this.lieu != evt.lieu) || (this.date != evt.date)) {
+    if ((this.lieu).equals(evt.lieu)) {
+      if ((this.date.equals(evt.date))) {
+        return false; 
+      } else { 
+        return true;
+      } 
+    } else {
       return true;
-    } else { 
-      return false;
     }
-
+    
   }
   // A implémenter : retourne vrai si deux événements ne se chevauchent pas
   // dans le temps (indépendamment du lieu).
@@ -265,9 +269,9 @@ public boolean equals(Object obj) {
  */
  
   public boolean pasDeChevauchementTemps(Evenement evt) {
-    if (this.date.isBefore(evt.date) && this.date.plusHours(this.duree).isAfter(evt.date)) { 
+    if (this.date.isBefore(evt.date) && this.date.plusMinutes(this.duree).isAfter(evt.date)) { 
       return false; 
-    } else if (evt.date.isBefore(this.date) && evt.date.plusHours(evt.duree).isAfter(this.date)) {
+    } else if (evt.date.isBefore(this.date) && evt.date.plusMinutes(evt.duree).isAfter(this.date)) {
       return false;
     } else {
       return true;

@@ -45,7 +45,5 @@ public interface InterMembre {
 
   List<Evenement> getListMesEvenements();
   
-  Membre verifierMembre(InterMembre membre);
-  
   void addEvenement(Evenement evt);
 }
